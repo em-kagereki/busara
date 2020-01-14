@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>BIG DATA ANALYSIS IN R TRAINING (BUSARA)</title>
+  <meta name="description" content="This the text material that will accompany the training" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This the text material that will accompany the training" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  
+  <meta name="twitter:description" content="This the text material that will accompany the training" />
+  
+
+<meta name="author" content="EDWIN KAGEREKI" />
+
+
+<meta name="date" content="2020-01-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="understanding-rs-performance.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Big Data Training in R - Busara</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> INTRODUCTION</a></li>
+<li class="chapter" data-level="2" data-path="understanding-rs-performance.html"><a href="understanding-rs-performance.html"><i class="fa fa-check"></i><b>2</b> Understanding R’s Performance</a></li>
+<li class="chapter" data-level="3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html"><i class="fa fa-check"></i><b>3</b> Taking R to the limit</a><ul>
+<li class="chapter" data-level="3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#managing-io"><i class="fa fa-check"></i><b>3.1</b> Managing I/O</a></li>
+<li class="chapter" data-level="3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-set-up-pcs."><i class="fa fa-check"></i><b>3.2</b> Efficiently set-up PCs.</a></li>
+<li class="chapter" data-level="3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-write-r-codes."><i class="fa fa-check"></i><b>3.3</b> Efficiently write R codes.</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#duplication"><i class="fa fa-check"></i><b>3.3.1</b> Duplication</a></li>
+<li class="chapter" data-level="3.3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#memory-allocation"><i class="fa fa-check"></i><b>3.3.2</b> Memory allocation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#vectorised-code"><i class="fa fa-check"></i><b>3.3.3</b> Vectorised code</a></li>
+<li class="chapter" data-level="3.3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#caching-variables"><i class="fa fa-check"></i><b>3.3.4</b> Caching variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficient-workflows."><i class="fa fa-check"></i><b>3.4</b> Efficient workflows.</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html"><i class="fa fa-check"></i><b>4</b> Stretching the limits</a><ul>
+<li class="chapter" data-level="4.1" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-computing-power-barrier"><i class="fa fa-check"></i><b>4.1</b> Breaking the computing power barrier</a></li>
+<li class="chapter" data-level="4.2" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-memory-barrier"><i class="fa fa-check"></i><b>4.2</b> Breaking the memory barrier</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html"><i class="fa fa-check"></i><b>5</b> Beyond the limits: distributed processing frameworks</a><ul>
+<li class="chapter" data-level="5.1" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-hadoop."><i class="fa fa-check"></i><b>5.1</b> Introduction to Hadoop.</a></li>
+<li class="chapter" data-level="5.2" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-spark."><i class="fa fa-check"></i><b>5.2</b> Introduction to Spark.</a></li>
+<li class="chapter" data-level="5.3" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#running-r-in-spark."><i class="fa fa-check"></i><b>5.3</b> Running R in Spark.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html"><i class="fa fa-check"></i><b>6</b> Beyond the limits: Working with databases in R</a><ul>
+<li class="chapter" data-level="6.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#overview-of-the-types-of-databases."><i class="fa fa-check"></i><b>6.1</b> Overview of the types of databases.</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-interface"><i class="fa fa-check"></i><b>6.1.1</b> Database Interface</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#connecting-and-exploring"><i class="fa fa-check"></i><b>6.2</b> Connecting and Exploring</a></li>
+<li class="chapter" data-level="6.3" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#read-write-and-modify-database"><i class="fa fa-check"></i><b>6.3</b> Read, write and modify database</a></li>
+<li class="chapter" data-level="6.4" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-queries-with-r"><i class="fa fa-check"></i><b>6.4</b> Database Queries With R</a></li>
+<li class="chapter" data-level="6.5" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#modeling-data-with-modeldb-tidypredict"><i class="fa fa-check"></i><b>6.5</b> modeling data with modeldb &amp; tidypredict</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html"><i class="fa fa-check"></i><b>7</b> Big data analysis: Data analysis, visualization and deployment</a><ul>
+<li class="chapter" data-level="7.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-sources."><i class="fa fa-check"></i><b>7.1</b> Data sources.</a></li>
+<li class="chapter" data-level="7.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-wrangling"><i class="fa fa-check"></i><b>7.2</b> Data wrangling</a></li>
+<li class="chapter" data-level="7.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-mining"><i class="fa fa-check"></i><b>7.3</b> Data mining</a></li>
+<li class="chapter" data-level="7.4" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#business-intelligence"><i class="fa fa-check"></i><b>7.4</b> Business intelligence</a></li>
+<li class="chapter" data-level="7.5" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#statistical-methods"><i class="fa fa-check"></i><b>7.5</b> Statistical methods</a></li>
+<li class="chapter" data-level="7.6" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-modelling"><i class="fa fa-check"></i><b>7.6</b> Data Modelling</a></li>
+<li class="chapter" data-level="7.7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#visualization."><i class="fa fa-check"></i><b>7.7</b> Visualization.</a></li>
+<li class="chapter" data-level="7.8" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment"><i class="fa fa-check"></i><b>7.8</b> Deployment</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment-of-desktop-apps"><i class="fa fa-check"></i><b>7.8.1</b> Deployment of desktop apps</a></li>
+<li class="chapter" data-level="7.8.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-interactive-web-apps"><i class="fa fa-check"></i><b>7.8.2</b> Deploy Interactive web Apps</a></li>
+<li class="chapter" data-level="7.8.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-models-for-mobile-and-embeded-devices"><i class="fa fa-check"></i><b>7.8.3</b> Deploy models for mobile and embeded devices</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Planning and implementing Big Data analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#need-assessment."><i class="fa fa-check"></i><b>8.1</b> Need assessment.</a></li>
+<li class="chapter" data-level="8.2" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#designing-a-workflow."><i class="fa fa-check"></i><b>8.2</b> Designing a workflow.</a></li>
+<li class="chapter" data-level="8.3" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#case-scenarios."><i class="fa fa-check"></i><b>8.3</b> Case scenarios.</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIG DATA ANALYSIS IN R TRAINING (BUSARA)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">BIG DATA ANALYSIS IN R TRAINING (BUSARA)</h1>
+<p class="author"><em>EDWIN KAGEREKI</em></p>
+<p class="date"><em>2020-01-14</em></p>
+</div>
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> INTRODUCTION</h1>
+<p>A few years ago while undertaking a consultancy asignment, I was faced with a problem whose solution was to was to write an R package. That is when I decided to write my first <a href="https://github.com/Kagereki/RPerio">R package: RPerio</a>.</p>
+<p>As a background, the task was to run deterministic <a href="https://www.cdc.gov/oralhealth/publications/library/pdf/jop_2007_78_7s_1387.pdf?q=fifth-grade-extracted-curr-12-21-07">classification algorithms</a> based on 168 variables. I was excited. My code earned me repute amongst my colleagues. Normally studies in this field (Periodontology) require a small sample size, maybe a few hundrends. With my new ‘innovation’ one of the professors challenged me to run my code in a larger dataset. This was historic data running into decades. I soon realised that the party was over. It would take unrealistic amount of time for my laptop to run the R code. I was frustrated! But more importantly my curiosity was aroused. Why was my code running so slow? What would happen if I was running hundrends of thousands of data points.</p>
+<p>My curiosity to solve this problem opened other doors. Soon I found myself researching on efficient ways to code in R. I learnt how to use multiple processors in R. I came to know of the small yellow elephant: hadoop. I have researched endlessly on the concepts of big data in R. Ultimately I appreciate that working inefficiently with small data makes big data impossible. I hope that reading through these notes will convince you the same.</p>
+<p>To date I retain my original version of my package, not for any productivity reason, but for the people I teach to critique and appreciate the power of inefficient programming. I hope that you appreciate how the issues discussed in <a href="http://34.219.51.183/files/book/_book/intro.html">chapter 2</a> can slow down a computer doing a very simple task in R. I have since improved the efficiency of RPerio which still offers immense help to the Periodontologists as they study gum disease. Further these lessons have helped me in my day to day analysis of big data in R.</p>
+<p>But what is big data? What is the threshold for a dataset to qualify data as Big?</p>
+<p>Amongst the many definitions of Big Data, one applicable to a very wide range of scenarios. <em>One byte more than you are comfortable with</em> is a well-known phrase used by Big Data conference speakers. While I appreciate that this encapsulates the meaning of Big Data very precisely, I also believe that it is non-specific enough, leaving the freedom to make a subjective decision to each one of us as to what and when to qualify data as Big.</p>
+<p>Although this simplified definition of Big Data, explicitly refers to one byte as a measurement of size, let us dissect the second part of the statement. Nowadays, most data change, vary rapidly stock-market data, or sensor data, are good examples. Moreover, data are now more complex than ever before. Information may be scrapped off the websites as unstructured text, JSON format, HTML files, through service APIs, and so on. Excel spreadsheets and traditional file formats such as Comma-Separated Values (CSV) or tab-delimited files that represent structured data are not in the majority any more. It is also very limiting to think of data as of only numeric or textual types.</p>
+<p>The size of data, the speed of their inputs/outputs and the differing formats and types of data were in fact the original three Vs: Volume, Velocity, and Variety, described in the article titled 3D Data Management: Controlling Data Volume, Velocity, and Variety published by <a href="https://blogs.gartner.com/doug-laney/files/2012/01/ad949-3D-Data-Management-Controlling-Data-Volume-Velocity-and-Variety.pdf">Doug Laney back in 2001</a>, as major conditions to treat any data as Big Data. Doug’s famous three Vs have been extended to include more specific and sometimes more qualitative factors such as data variability (for data with periodic peaks of data flow), complexity (multiple sources of related data), veracity (denoting trustworthiness of data consistency), or value (insight and interpretation). No matter how many Vs or Cs we use to describe Big Data, it generally revolves around the limitations of the available computational infrastructure, the skills of the people dealing with large data sets and the methods applied to collect, store, and process these data.</p>
+<p>In my considered opinion and for purposes of this tutorial, I will suggest that we adopt working classification as below:</p>
+<ol style="list-style-type: decimal">
+<li>Data that fits in RAM, but exerts computational without strain</li>
+<li>Data that does not fit in RAM, but fits in the local storage (HD, SSD, etc.)</li>
+<li>Data that does not fit in your local storage.</li>
+</ol>
+<p>This arbitrary threshold will make more sense when we explore the limitations of R in terms of memory as well as methods that we may chose to tackle a big data task.</p>
+<p>More often that not I find analysts of various calibre imagine that Big data is complex process requiring complex work flows and computational infrastructure. I have now been programming in R for over 8 years, and the better part of this has involved management of big datasets. This has given me adequate opportunity to examine how the language works.I therefore write these notes based on my knowledge and experience. It is my attempt to pass on what I’ve learned so that you can manage Big datasets in a better way. I hope to help you avoid the mistakes I’ve made and dead ends I’ve gone down by sharing useful tools, techniques, and tips that can help you to attack many types of problems. In the process, I hope to show that, despite its frustrating quirks, R is, at its heart, is an elegant and beautiful language, that can be used to handle very large datasets. I have therefore organised my notes as follows:</p>
+<ul>
+<li><p><a href="http://34.219.51.183/files/book/_book/understanding-rs-performance.html">Chapter 2:Understanding R’s Performance</a> This offers a general introduction to R with a view to improve on the efficiency of R. It introduces the three aspects that can lead to inefficiency in analysis of big data.</p></li>
+<li><p><a href="http://34.219.51.183/files/book/_book/taking-r-to-the-limit.html">Chapter 3:Taking R to the limit</a> This chapter expands the capabilities of R to handle datasets that are within the storage memory but whose processing if not done well maybe limited by the RAM. This chapter will help you manage datasets in the first category; that is datasets that fit in the RAM but analysing them is a little inefficient.</p></li>
+<li><p><a href="http://34.219.51.183/files/book/_book/stretching-the-limits.html">Chapter 4:Stretching the limits</a> This chapter discusses options for datasets that may ordinarily be impossible to analyse normally. The processinglimitation can be overcome by engaging the GPU or threading the code. To eliminate the memory barriers we discuss external memory algorithms and the special data structures. This may enable you analyse datasets that are bigger than the RAM but fits in the computer storage memory.</p></li>
+<li><p><a href="http://34.219.51.183/files/book/_book/beyond-the-limits-distributed-processing-frameworks.html">Chapter 5:Beyond the limits: distributed processing frameworks</a> Here we look at the broad approaches to cluster computing infrastructure for R by introducing Hadoop and Spark, with a critical appraisal on each other. Finally we settle to more detailed demonstrations in Spark.</p></li>
+<li><p><a href="http://34.219.51.183/files/book/_book/beyond-the-limits-working-with-databases-in-r.html">Chapter 6:Beyond the limits: Working with databases in R</a> This chapter deals with the special case of data dwelling in databases. A broad intoduction to database connectivity, querrying, I/O from R is discussed. In particular we demostrate the case of MySQl database because of its ubituity.</p></li>
+<li><p><a href="http://34.219.51.183/files/book/_book/big-data-analysis-data-analysis-visualization-and-deployment.html">Chapter 7: Big data analysis: Data analysis, visualization and deployment</a> This chapter discusses the actual aspects of data analysis. The goal is to highlight the differences between the traditional data analsysis and particular aspect of big data analysis. To complete the picture we will introduce the idea of deploying the products of the analysis with particular interest on deployment on web and mobile platforms.</p></li>
+</ul>
+<p><strong>Conventions:</strong></p>
+<p>In each chapter you will find special sections as follow:</p>
+<div class="alert alert-success">
+<p>
+Tips and summary:
+</p>
+<p>
+Each chapter carries some tips and summaries.
+</p>
+</div>
+<div class="alert alert alert-info">
+<p>
+Training objectives:
+</p>
+<p>
+These will be presented at the begining of each chapter. If you feel confident in the chapter objectives, you are encouraged to take the chapter exercises to check your proficiency. You may skip the chapters that you feel you are acquainted with.
+</p>
+</div>
+<div class="alert alert alert-warning">
+<p>
+Exercises:
+</p>
+<p>
+To assess your proficiency, you are encouraged to complete the exercises given for each chapter.
+</p>
+</div>
+<p>Through out the notes code will be identified as <code>code</code>. Further all code chunks in R can be copied and run locally</p>
+<p><strong>Audience</strong></p>
+<p>These notes are written for the Big Data analysis for the <strong>Busara team</strong>. These notes will compliment a series of lectures to be delivered to the team. The lectures will have hand-on examples and exercises. The notes are meant to give an introduction and to direct on the relevant content to further read These notes will benefit anyone who wants to make their R code faster and more scalable for analysis of big data. These considerations generally come after learning the very basics of R for data analysis, I therefore assume you are accustomed to R. However this text is divided into chapters with the intention that a reader who is more proficient in one aspect does not waste time on the full text.</p>
+<p>Thus the book should be useful to people with a range of skill levels, who can broadly be divided into three groups:</p>
+<ul>
+<li><p>For <strong>programmers with little experience with R</strong> it is advisable that you go through the whole text. This text will help you navigate the quirks of R to make it work efficiently and stay focused on big data analysis.</p></li>
+<li><p>For <strong>R users with little experience of programming</strong> <a href="http://34.219.51.183/files/book/_book/taking-r-to-the-limit.html">chapter 3</a> this book will show you many concepts and ‘tricks of the trade’, some of which are borrowed from Computer Science, that will make your work more time effective.</p></li>
+<li><p>For <strong>R users who are interested in running big data outside their computers</strong> <a href="http://34.219.51.183/files/book/_book/beyond-the-limits-working-with-databases-in-r.html">Chapter 6</a> gives a good introduction on how to run data analysis within databses. <a href="http://34.219.51.183/files/book/_book/beyond-the-limits-distributed-processing-frameworks.html">Chapter 5</a> gives a very subtle introduction to cluster computing. For R users who wish to do analysis of big data that within their computers <a href="http://34.219.51.183/files/book/_book/stretching-the-limits.html">Chapter 4</a> gives applicable ideas.</p></li>
+</ul>
+<p><strong>Data and exercises</strong></p>
+<p><strong>Task 1: Analysis of structured data</strong></p>
+<p>This will involve the analysis of structured big data in R. We will use the <a href="http://stat-computing.org/dataexpo/2009/the-data.html">airlines dataset</a>, a summary of the on-time performance of domestic flights operated by large US air carriers. For this exercise we will have the data for 22 years (1987 to 2008). This data is about 30GB in size. For purposes of the exercises, the data will be availed as follows:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Data slices - 2GB, 5GB data slices.</li>
+<li>Complete dataset - 29.5GB.</li>
+<li>A MySQL database with the whole datset.</li>
+<li>In a Hadoop Cluster with the complete dataset.</li>
+</ol>
+<p>Ultimately the reader is expected to carry out the following tasks:</p>
+<ol style="list-style-type: decimal">
+<li>Use the laptop to answer the following questions using the 5GB dataset</li>
+</ol>
+<ul>
+<li><p>Do planes delay more in winter (January, Feburuary, March) than in summer(June, July, August)? In case this is the case, is it significant?</p></li>
+<li><p>Can you predict the arrival delays on sundays using Month, AirTime, DepDelay and Distance as predictors? Compare the actual values with the predicted ones using a scatterplot.</p></li>
+<li><p>For his weekly presentation the manager of the Houston airport is curious about some relations between the <em>distance of a flight</em> and other variables. First he examines whether the <em>average distance of flights</em> differs according to the day of the week. Next he is interested whether the <em>distance of a flight</em> is correlated with the <em>taxi out time</em> because he imagines that the big flights might get better or worse parking lots at the airport. To show his results he wants to present them in a nice charts.</p></li>
+</ul>
+<p>The means to achieve these tasks will be at your discretion. It is however suggested that you think of atleast two strategies to meet this goal. For example, one may chose to try methods suggested in <a href="http://34.219.51.183/files/book/_book/stretching-the-limits.html">chapter 4</a>, or the in-databases methods of analysis as discussed in <a href="http://34.219.51.183/files/book/_book/beyond-the-limits-working-with-databases-in-r.html">chapter 6</a> or even go all out and run a cluster of computers as discussed in <a href="http://34.219.51.183/files/book/_book/beyond-the-limits-working-with-databases-in-r.html">chapter 5</a>. Rememebr, there is no right method, just an efficient one and we arent sure which is the most efficient way yet.</p>
+<p><strong>Task 2: Analysis of semi-structured data</strong> This exercise will involve collection and analysis of semi-structured data. In this example we will look at the <a href="https://live.mystocks.co.ke/price_list/">Nairobi Stock exchange data</a>.</p>
+<p>This task requires that we get the stock data for the month of December 2019 and solve the following tasks:</p>
+<ul>
+<li><p>Find the most profitable stock for the month.</p></li>
+<li></li>
+</ul>
+<p><strong>Task 3: Analysis of unstructured data</strong></p>
+<p>This exercise will involve the analysis of unstructured data. We will use <a href="https://www.ncbi.nlm.nih.gov/pubmed/">Pubmed library</a> to understand unstructured data analysis. PubMed comprises more than 30 million citations for biomedical literature from MEDLINE, life science journals, and online books. Citations may include links to full-text content from PubMed Central and publisher web sites. We will be extracting metrics from the collection of scientific abstracts and analysing them. Ultimately the reader is expected to:</p>
+<ul>
+<li>Appreciate the need to convert the unstructured data into structured data. In this example we will look at an example of custom codes to scrape P-values from the Pubmed library.</li>
+<li>Understand how to curate the required data from the corpus of text in unstructured data.</li>
+<li>Speed up the process of curating the data in R.</li>
+</ul>
+<p>The tasks required of the reader include:</p>
+<ol style="list-style-type: decimal">
+<li><p>Download the R functions to scrape P-values from Pubmed abstracts in the <em>Additional file</em> published by <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4857379/">Kagereki et al.</a></p></li>
+<li><p>Download atleast 50,000 abstracts from journals of your choice.</p></li>
+<li><p>Calculate the proportion of P-values that are below the statistical threshold of 0.05 and create a visualization.</p></li>
+</ol>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="understanding-rs-performance.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

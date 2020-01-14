@@ -1,0 +1,65 @@
+# Understanding R’s Performance {#intro}
+---------------------
+R is a  cornucopia of statistical analysis 
+
+R is a great tool used for statistical analysis and data processing. When it was first developed in 1993, it was designed as a tool that would teach data analysis courses. Because it is so easy to use, it became more and more popular over the next 20 years, not only in academia, but also in government and industry. R is also an open source tool, so its users can use it for free and contribute new statistical packages to the R public repository called the Comprehensive R Archive Network (CRAN). As the CRAN library became richer with more than 6,000 well-documented and ready-to-use packages at the time of writing this book, the attractiveness of R increased even further. In these 20 years, the volume of data being created, transmitted, stored, and analyzed, by organizations and individuals alike, has also grown exponentially. R programmers who need to process and analyze the ever growing volume of data sometimes find that R's performance suffers under such heavy loads. Why does R sometimes not perform well, and how can we overcome its performance limitations? This book examines the factors behind R's performance and offers a variety of techniques to improve the performance of R programs, for example, optimizing memory usage, performing computations in parallel, or even tapping the computing power of external data processing systems.
+
+But R has performance limitations when you come to big data analysis. In this chapter we seek to understand; how big is big data?, what are the limitations of R in big data analysis? What are the possible solutions.
+
+Before we can find the solutions to R's performance problems, we need to understand what makes R perform poorly in certain situations. This chapter kicks off our exploration of the high-performance R programming by taking a peek under the hood to understand how R is designed, and how its design can limit the performance of R programs.
+
+We will examine three main constraints faced by any computational task—CPU, RAM, and disk input/output (I/O)—and then look at how these play out specifically in R programs. By the end of this chapter, you will have some insights into the bottlenecks that your R programs could run into.
+
+
+CPU, RAM, and disk I/O
+
+First, let's see how R programs are executed in a computer. This is a very simplified version of what actually happens, but it suffices for us to understand the performance limitations of R. The following figure illustrates the steps required to execute an R program.
+
+
+### Understanding Memory
+
+http://adv-r.had.co.nz/memory.html
+
+A solid understanding of R’s memory management will help you predict how much memory you’ll need for a given task and help you to make the most of the memory you have. 
+The goal of this section is to help you understand the basics of memory management in R, moving from individual objects to functions to larger blocks of code. Along the way, you’ll learn about some common myths, such as that you need to call gc() to free up memory, or that for loops are always slow.
+
+1. Object size shows you how to use object_size() to see how much memory an object occupies, and uses that as a launching point to improve your understanding of how R objects are stored in memory.
+
+2. Memory usage and garbage collection introduces you to the mem_used() and mem_change() functions that will help you understand how R allocates and frees memory.
+
+3. Memory profiling with lineprof shows you how to use the lineprof package to understand how memory is allocated and released in larger code blocks.
+
+4. Modification in place introduces you to the address() and refs() functions so that you can understand when R modifies in place and when R modifies a copy. Understanding when objects are copied is very important for writing efficient R code.
+
+
+
+A microbenchmark is a measurement of the performance of a very small piece of code, something that might take microseconds (µs) or nanoseconds (ns) to run. I’m going to use microbenchmarks to demonstrate the performance of very low-level pieces of R code, which help develop your intuition for how R works.
+
+Memory size
+---------
+Object size
+
+
+
+
+
+
+```{r}
+#data <- read.csv("mydata.csv")
+#totals <- colSums(data)
+#write.csv(totals, "totals.csv")
+
+library(rio)
+convert("data3.csv", "data3.Rds")
+
+```
+
+```{r}
+library(unilur)
+```
+
+edwin 
+
+```{block, box.title = "You can add a title", box.body = list(fill = "lightblue"), box.header = list(fill = "red", colour = "white")}
+A custom box
+```

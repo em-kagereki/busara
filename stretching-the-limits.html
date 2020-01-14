@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Stretching the limits | BIG DATA ANALYSIS IN R TRAINING (BUSARA)</title>
+  <meta name="description" content="This the text material that will accompany the training" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Stretching the limits | BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This the text material that will accompany the training" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Stretching the limits | BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  
+  <meta name="twitter:description" content="This the text material that will accompany the training" />
+  
+
+<meta name="author" content="EDWIN KAGEREKI" />
+
+
+<meta name="date" content="2020-01-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="taking-r-to-the-limit.html"/>
+<link rel="next" href="beyond-the-limits-distributed-processing-frameworks.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Big Data Training in R - Busara</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> INTRODUCTION</a></li>
+<li class="chapter" data-level="2" data-path="understanding-rs-performance.html"><a href="understanding-rs-performance.html"><i class="fa fa-check"></i><b>2</b> Understanding R’s Performance</a></li>
+<li class="chapter" data-level="3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html"><i class="fa fa-check"></i><b>3</b> Taking R to the limit</a><ul>
+<li class="chapter" data-level="3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#managing-io"><i class="fa fa-check"></i><b>3.1</b> Managing I/O</a></li>
+<li class="chapter" data-level="3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-set-up-pcs."><i class="fa fa-check"></i><b>3.2</b> Efficiently set-up PCs.</a></li>
+<li class="chapter" data-level="3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-write-r-codes."><i class="fa fa-check"></i><b>3.3</b> Efficiently write R codes.</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#duplication"><i class="fa fa-check"></i><b>3.3.1</b> Duplication</a></li>
+<li class="chapter" data-level="3.3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#memory-allocation"><i class="fa fa-check"></i><b>3.3.2</b> Memory allocation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#vectorised-code"><i class="fa fa-check"></i><b>3.3.3</b> Vectorised code</a></li>
+<li class="chapter" data-level="3.3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#caching-variables"><i class="fa fa-check"></i><b>3.3.4</b> Caching variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficient-workflows."><i class="fa fa-check"></i><b>3.4</b> Efficient workflows.</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html"><i class="fa fa-check"></i><b>4</b> Stretching the limits</a><ul>
+<li class="chapter" data-level="4.1" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-computing-power-barrier"><i class="fa fa-check"></i><b>4.1</b> Breaking the computing power barrier</a></li>
+<li class="chapter" data-level="4.2" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-memory-barrier"><i class="fa fa-check"></i><b>4.2</b> Breaking the memory barrier</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html"><i class="fa fa-check"></i><b>5</b> Beyond the limits: distributed processing frameworks</a><ul>
+<li class="chapter" data-level="5.1" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-hadoop."><i class="fa fa-check"></i><b>5.1</b> Introduction to Hadoop.</a></li>
+<li class="chapter" data-level="5.2" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-spark."><i class="fa fa-check"></i><b>5.2</b> Introduction to Spark.</a></li>
+<li class="chapter" data-level="5.3" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#running-r-in-spark."><i class="fa fa-check"></i><b>5.3</b> Running R in Spark.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html"><i class="fa fa-check"></i><b>6</b> Beyond the limits: Working with databases in R</a><ul>
+<li class="chapter" data-level="6.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#overview-of-the-types-of-databases."><i class="fa fa-check"></i><b>6.1</b> Overview of the types of databases.</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-interface"><i class="fa fa-check"></i><b>6.1.1</b> Database Interface</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#connecting-and-exploring"><i class="fa fa-check"></i><b>6.2</b> Connecting and Exploring</a></li>
+<li class="chapter" data-level="6.3" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#read-write-and-modify-database"><i class="fa fa-check"></i><b>6.3</b> Read, write and modify database</a></li>
+<li class="chapter" data-level="6.4" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-queries-with-r"><i class="fa fa-check"></i><b>6.4</b> Database Queries With R</a></li>
+<li class="chapter" data-level="6.5" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#modeling-data-with-modeldb-tidypredict"><i class="fa fa-check"></i><b>6.5</b> modeling data with modeldb &amp; tidypredict</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html"><i class="fa fa-check"></i><b>7</b> Big data analysis: Data analysis, visualization and deployment</a><ul>
+<li class="chapter" data-level="7.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-sources."><i class="fa fa-check"></i><b>7.1</b> Data sources.</a></li>
+<li class="chapter" data-level="7.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-wrangling"><i class="fa fa-check"></i><b>7.2</b> Data wrangling</a></li>
+<li class="chapter" data-level="7.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-mining"><i class="fa fa-check"></i><b>7.3</b> Data mining</a></li>
+<li class="chapter" data-level="7.4" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#business-intelligence"><i class="fa fa-check"></i><b>7.4</b> Business intelligence</a></li>
+<li class="chapter" data-level="7.5" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#statistical-methods"><i class="fa fa-check"></i><b>7.5</b> Statistical methods</a></li>
+<li class="chapter" data-level="7.6" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-modelling"><i class="fa fa-check"></i><b>7.6</b> Data Modelling</a></li>
+<li class="chapter" data-level="7.7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#visualization."><i class="fa fa-check"></i><b>7.7</b> Visualization.</a></li>
+<li class="chapter" data-level="7.8" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment"><i class="fa fa-check"></i><b>7.8</b> Deployment</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment-of-desktop-apps"><i class="fa fa-check"></i><b>7.8.1</b> Deployment of desktop apps</a></li>
+<li class="chapter" data-level="7.8.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-interactive-web-apps"><i class="fa fa-check"></i><b>7.8.2</b> Deploy Interactive web Apps</a></li>
+<li class="chapter" data-level="7.8.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-models-for-mobile-and-embeded-devices"><i class="fa fa-check"></i><b>7.8.3</b> Deploy models for mobile and embeded devices</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Planning and implementing Big Data analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#need-assessment."><i class="fa fa-check"></i><b>8.1</b> Need assessment.</a></li>
+<li class="chapter" data-level="8.2" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#designing-a-workflow."><i class="fa fa-check"></i><b>8.2</b> Designing a workflow.</a></li>
+<li class="chapter" data-level="8.3" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#case-scenarios."><i class="fa fa-check"></i><b>8.3</b> Case scenarios.</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIG DATA ANALYSIS IN R TRAINING (BUSARA)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="stretching-the-limits" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Stretching the limits</h1>
+<div class="alert alert alert-info">
+<p>
+Chapter objectives:
+</p>
+<ul>
+<li>
+<p>
+Learn how to use GPU for common computing tasks.
+</p>
+</li>
+<li>
+<p>
+How to multi-thread in R.
+</p>
+</li>
+<li>
+<p>
+How to use memory mapped files.
+</p>
+</li>
+</ul>
+</div>
+<div id="breaking-the-computing-power-barrier" class="section level2">
+<h2><span class="header-section-number">4.1</span> Breaking the computing power barrier</h2>
+<p><strong>Engaging the GPU to run R code</strong></p>
+<p>Any PC has one (or at least a GPU chipset). The graphical operations performed by a GPU involve vectors. We can herefore use them for non-graphic computations. To do so, we have to “trick” the GPUs by writing what appeared to be graphics code.</p>
+<p>A GPU might be called a “multi-multicore” machine. It consists of a number of streaming multiprocessors (SMs), each one of which is a multicore engine. Thus the cores share memory, and many threads run simultaneously. A typical GPU will contain many more cores than the 2, 4 or even 8 core one sees commonly on PCs and laptops.</p>
+<p>A number of R packages have been written to allow you to access some GPU operations, such as <code>gputools</code>, <code>gmatrix</code>. They perform only specialized operations, mainly matrix manipulation and sorting.</p>
+<p><strong>Parallel Computing in R</strong></p>
+<p>When working with R, you will often encounter situations in which you need to repeat a computation, or a series of computations, many times. This can be accomplished through the use of a for loop. However, if there are a large number of computations that need to be carried out (i.e. many thousands), or if those individual computations are time-consuming (i.e. many minutes), a for loop can be very slow That said, almost all computers now have multicore processors, and as long as these computations do not need to communicate (i.e. they are “embarrassingly parallel”), they can be spread across multiple cores and executed in parallel, reducing computation time. Example of situations that parallel computation maybe useful:</p>
+<ul>
+<li><p>Resampling methods, such as the Jackknife and the Bootstrap. We will show examples of these methods in action, at the end of the lecture.</p></li>
+<li><p>Cross-validation procedures for calibration of model parameters.</p></li>
+<li><p>Optimization methods, when using, for example, random initial values.</p></li>
+<li><p>Markov Chain Monte Carlo methods, by initializing multiple parallel chains.</p></li>
+<li><p>Random Forests and Boosting in multivariate analysis.</p></li>
+</ul>
+<p>Terminology</p>
+<p><em>A core</em> is a general term for either a single processor on your own computer (technically you only have one processor, but a modern processor like the i7 can have multiple cores - hence the term) or a single machine in a cluster network.</p>
+<p><em>A cluster</em> is a collection of objecting capable of hosting cores, either a network or just the collection of cores on your personal computer.</p>
+<p><em>A process</em> is a single running version of R (or more generally any program). Each core runs a single process.</p>
+<p>Regardless of the application, parallel computing boils down to three basic steps: split the problem into pieces, execute in parallel, and collect the results.</p>
+<p>There are different methods that we may implement multi-threading</p>
+<ol style="list-style-type: lower-alpha">
+<li>Using Parallel Libraries</li>
+</ol>
+<p>Parallel libraries, such as <a href="https://www.openblas.net/">OpenBLAS</a>，<a href="https://software.intel.com/en-us/mkl">Intel MKL</a>，<a href="https://developer.nvidia.com/cublas">NVIDIA cuBLAS</a>, are usually provided by the hardware manufacturer with in-depth optimizations based on the corresponding hardwares, so its performance is hugely better than R libraries.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Using MultiThreading Functions</li>
+</ol>
+<p>The most popular way to program on multicore machines is to use OpenMP, a C/C++ (and FORTRAN) callable system that runs on Linux, Mac and Windows. (For Macs, you need the OpenMP-enabled version of Mac’s clang compiler.)</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Using Parallel Packages</li>
+</ol>
+<p>There are lots of parallel packages and tools. These parallel packages can be used like any other R packages quickly and conveniently. R users can always focus on the problem itself, without having to think too much about parallelism implementations and performance issues.</p>
+<p><strong>Parallel backends</strong></p>
+<p>By default, R will not take advantage of all the cores available on a computer. In order to execute code in parallel, you have to first make the desired number of cores available to R by registering a ‘parallel backend’, which effectively creates a cluster to which computations can be sent. Fortunately there are a number of packages that will handle the nitty-gritty details of this process for you:</p>
+<ul>
+<li><code>doMC</code> (built on multicore, works for unix-alikes)</li>
+<li><code>doSNOW</code> (built on snow, works for Windows)</li>
+<li><code>doParallel</code> (built on parallel, works for both)</li>
+<li><code>future.apply</code> (Implementations of apply(), by(), eapply(), lapply(), Map(), mapply(), replicate(), sapply(), tapply(), and vapply() that can be resolved using any future-supported backend,)</li>
+<li>Java ( an example of a useful package that uses Java as the backedn is <a href="https://www.h2o.ai/"><code>h20</code></a>)</li>
+</ul>
+<p>The parallel package is essentially a merger of <code>multicore</code> and <code>snow</code>, and offers a simple example of implementing threading in R. Creating and running a a parallel backend (i.e. cluster) is accomplished through just a few lines of code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(doParallel)
+<span class="co"># Find out how many cores are available (if you don&#39;t already know)</span>
+<span class="kw">detectCores</span>()</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create cluster with desired number of cores</span>
+cl &lt;-<span class="st"> </span><span class="kw">makeCluster</span>(<span class="dv">2</span>)
+
+<span class="co"># Register cluster</span>
+<span class="kw">registerDoParallel</span>(cl)
+
+<span class="co"># Find out how many cores are being used</span>
+<span class="kw">getDoParWorkers</span>()</code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(parallel)
+<span class="kw">library</span>(boot)
+
+run1 &lt;-<span class="st"> </span><span class="cf">function</span>(...) {
+   <span class="kw">library</span>(boot)
+   cd4.rg &lt;-<span class="st"> </span><span class="cf">function</span>(data, mle) MASS<span class="op">::</span><span class="kw">mvrnorm</span>(<span class="kw">nrow</span>(data), mle<span class="op">$</span>m, mle<span class="op">$</span>v)
+   cd4.mle &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">m =</span> <span class="kw">colMeans</span>(cd4), <span class="dt">v =</span> <span class="kw">var</span>(cd4))
+   <span class="kw">boot</span>(cd4, corr, <span class="dt">R =</span> <span class="dv">500</span>, <span class="dt">sim =</span> <span class="st">&quot;parametric&quot;</span>,
+        <span class="dt">ran.gen =</span> cd4.rg, <span class="dt">mle =</span> cd4.mle)
+}
+
+cl &lt;-<span class="st"> </span><span class="kw">makeCluster</span>(<span class="dv">4</span>) ## Parallelize using four cores
+<span class="kw">clusterSetRNGStream</span>(cl, <span class="dv">123</span>)
+cd4.boot &lt;-<span class="st"> </span><span class="kw">do.call</span>(c, <span class="kw">parLapply</span>(cl, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, run1))
+<span class="kw">boot.ci</span>(cd4.boot, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;norm&quot;</span>, <span class="st">&quot;basic&quot;</span>, <span class="st">&quot;perc&quot;</span>),
+                  <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">h =</span> atanh, <span class="dt">hinv =</span> tanh)</code></pre></div>
+<pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+## Based on 2000 bootstrap replicates
+## 
+## CALL : 
+## boot.ci(boot.out = cd4.boot, conf = 0.9, type = c(&quot;norm&quot;, &quot;basic&quot;, 
+##     &quot;perc&quot;), h = atanh, hinv = tanh)
+## 
+## Intervals : 
+## Level      Normal              Basic              Percentile     
+## 90%   ( 0.4634,  0.8579 )   ( 0.4632,  0.8603 )   ( 0.4884,  0.8686 )  
+## Calculations on Transformed Scale;  Intervals on Original Scale</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stopCluster</span>(cl)</code></pre></div>
+</div>
+<div id="breaking-the-memory-barrier" class="section level2">
+<h2><span class="header-section-number">4.2</span> Breaking the memory barrier</h2>
+<p>Memory hierachy</p>
+<ul>
+<li><p>Cache (very fast, very expensive, limited storage)</p></li>
+<li><p>Random access memory (fast, expensive, limited storage)</p></li>
+<li><p>External memory (slow, cheap, massive storage)</p></li>
+</ul>
+<p>considering that read.table() recommends the maximum data size to be 10%-20% of RAM, it is nearly impossible to work with on a standard machine.</p>
+<p>The size of big data is relative to the available computing resources. The theoretical limit of random access memory (RAM) is determined by the width of memory addresses: 4 gigabyte (GB) (232 bytes) for a 32-bit computer and 16.8 million terabyte (264 bytes) for a 64-bit computer. In practice, however, the latter is limited by the physical space of a computer case, the operating system, and specific software. Individual objects in R have limits in size too; an R user can hardly work with any object of size close to that limit. Emerson and Kane (2012) suggested that a data set would be considered large if it exceeds 20% of RAM on a given machine and massive if it exceeds 50%, in which case, even the simplest calculation would consume all the remaining RAM.</p>
+<p>Memory boundary can be broken with an external memory algorithms (EMA) (e.g., Vitter, 2001), which conceptually works by storing the data on a disk storage (which has a much greater limit than RAM), and processing one chunk of it at a time in RAM (e.g., Lumley, 2013). The results from each chunk will be saved or updated and the process continues until the entire dataset is exhausted; then, if needed as in an iterative algorithm, the process is reset from the beginning of the data. To implement an EMA for each statistical function, one need to address</p>
+<p><strong>Data management.</strong></p>
+<ul>
+<li>One option is to let the data stay in the storage memory in its form. The data is then analyzed in chunks. The code below demonstrated how one can read a datafile that is larger than the RAM and anlyse it:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">transactFile&lt;-<span class="st">&#39;data3.csv&#39;</span>
+index&lt;-<span class="dv">0</span>
+chunkSize&lt;-<span class="dv">100</span>
+con&lt;-<span class="kw">file</span>(<span class="dt">description=</span>transactFile, <span class="dt">open=</span><span class="st">&#39;r&#39;</span>) <span class="co"># Basically a file function</span>
+dataChunk&lt;-<span class="kw">read.table</span>(con, <span class="dt">nrows=</span>chunkSize,<span class="dt">header=</span>T, <span class="dt">fill=</span><span class="ot">TRUE</span>,<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>)
+actualColumnNames&lt;-<span class="kw">names</span>(dataChunk)
+rowamount&lt;-<span class="dv">0</span>
+counter&lt;-<span class="dv">0</span>
+<span class="cf">repeat</span>{
+  index&lt;-index<span class="op">+</span><span class="dv">1</span>
+  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;Processing rows:&#39;</span>, index<span class="op">*</span>chunkSize))
+  
+  rowamount&lt;-rowamount<span class="op">+</span><span class="kw">sum</span>(dataChunk<span class="op">$</span>X)
+  counter&lt;-counter<span class="op">+</span>counter<span class="op">+</span><span class="kw">nrow</span>(dataChunk)
+  
+<span class="cf">if</span>(<span class="kw">nrow</span>(dataChunk) <span class="op">!=</span>chunkSize){
+  <span class="kw">print</span>(<span class="st">&#39;Processed all files!&#39;</span>)
+  <span class="cf">break</span>}
+  dataChunk &lt;-<span class="st"> </span><span class="kw">read.table</span>(con,<span class="dt">nrows=</span>chunkSize,<span class="dt">skip=</span><span class="dv">0</span>, <span class="dt">header=</span><span class="ot">FALSE</span>, <span class="dt">fill=</span><span class="ot">TRUE</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">col.names=</span>actualColumnNames)
+  <span class="cf">if</span>(index<span class="op">&gt;</span><span class="dv">5</span>)
+    <span class="cf">break</span>
+  
+  }</code></pre></div>
+<pre><code>## [1] &quot;Processing rows: 100&quot;
+## [1] &quot;Processing rows: 200&quot;
+## [1] &quot;Processing rows: 300&quot;
+## [1] &quot;Processing rows: 400&quot;
+## [1] &quot;Processing rows: 500&quot;
+## [1] &quot;Processing rows: 600&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">close</span>(con)
+<span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&#39;Row mean:&#39;</span>, rowamount<span class="op">/</span>counter))</code></pre></div>
+<pre><code>## [1] &quot;Row mean:0&quot;</code></pre>
+<ul>
+<li><p>Another option to this is to store oversize data in relational databases. This method depends on an external database management system (DBMS) such as MySQL, PostgreSQL, SQLite, H2, ODBC, Oracle, and others. Interfaces to R are provided through many R packages as discussed in <a href="http://34.219.51.183/files/book/_book/stretching-the-limits.html">Chapter 7</a>. Further this approach requires a DBMS to be installed and maintained, and knowledge of structured query language. An exception for simpler applications is package <a href="https://cran.r-project.org/web/packages/filehash/index.html">filehash</a>, which comes with a simple key-value database implementation itself. It would be benefitial to read further on this package.</p></li>
+<li><p>Two R packages, <a href="https://cran.r-project.org/web/packages/bigmemory/index.html">bigmemory</a> and <a href="https://cran.r-project.org/web/packages/ff/index.html">ff</a> provide data structures for massive data while retaining a look and feel of R objects</p></li>
+</ul>
+<p><strong>Bigmemory</strong></p>
+<p>The bigmemory package defines a data structure big.matrix for numeric matrices which uses memory-mapped files to allow matrices to exceed the RAM size on computers with 64-bit operating systems. The underling technology is memory mapping on modern operating systems that associates a segment of virtual memory in a one-to-one correspondence with contents of a file. These files are accessed at a much faster speed than in the database approaches because operations are handled at the operating-system level. The big.matrix structure has several advantages such as support of shared memory for efficiency in parallel computing, reference behavior that avoids unnecessary temporary copies of massive objects, and column-major format that is compatible with legacy linear algebra packages (e.g., BLAS, LAPACK) (Kane, Emerson and Weston, 2013). The package provides utility to read in a csv file to form a big.matrix object, but it only allows one type of data, numeric; it is a numeric matrix after all.</p>
+<p><strong>ff</strong></p>
+<p>The ff package provides data structures that are stored in binary flat files but behave (almost) as if they were in RAM by transparently mapping only a section (pagesize) of meta data in main memory. Unlike bigmemory, it supports R’s standard atomic data types (e.g., double or logical) as well as nonstandard, storage efficient atomic types (e.g., the 2-bit unsigned quad type allows efficient storage of genomic data as a factor with levels A, T, G, and C). It also provides class ffdf which is like data.frame in R, and import/export filters for csv files. A binary flat file can be shared by multiple ff objects in the same or multiple R processes for parallel access. Utility functions allow interactive process of selections of big data.</p>
+<p><strong>Analytical tasks</strong></p>
+<p>If we choose to access the data in its format we will have</p>
+<p>For analytical tasks in the data stored in databases,we will discuss how to carry out the analysis in <a href="http://34.219.51.183/files/book/_book/stretching-the-limits.html">Chapter 7</a>.</p>
+<p>Unfortunately the data management systems in packages bigmemory or ff do not mean that one can apply existing R functions yet. Even a simple statistical analysis such as linear model or survival analysis will need to be implemented for the new data structures. Chunks of big data will be processed in RAM one at a time, and often, the process needs to be iterated over the whole data.</p>
+<p><strong>Bigmemory</strong></p>
+<p>The family of bigmemory provides a collection of functions for big.matrix objects: biganalytics for basic analytic and statistical functions, bigtabulate for tabulation operations (Emerson and Kane, 2013b), and bigalgebra for matrix operation with the BLAS and LAPACK libraries (Kane, Lewis and Emerson, 2014). Some additional functions for big.matrix objects are available from other contributed packages, such as bigpca for principal component analysis and single-value decomposition (Cooper, 2014), and bigrf for random forest (Lim, Breiman and Cutler, 2014).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(bigmemory)
+<span class="kw">library</span>(biganalytics)
+<span class="kw">library</span>(bigtabulate)
+x &lt;-<span class="st"> </span><span class="kw">read.big.matrix</span>(<span class="st">&quot;data3.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;integer&quot;</span>,
+ <span class="dt">shared =</span> <span class="ot">TRUE</span>, <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;mta_tax&quot;</span>, <span class="st">&quot;tip_amount&quot;</span>, <span class="st">&quot;tolls_amount&quot;</span>,
+<span class="st">&quot;improvement_surcharge&quot;</span>, <span class="st">&quot;total_amount&quot;</span>))
+
+<span class="kw">dim</span>(x)</code></pre></div>
+<pre><code>## [1] 714   5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(x)</code></pre></div>
+<pre><code>##                               min         max        mean         NAs
+## mta_tax                 0.0000000   0.0000000   0.0000000   1.0000000
+## tip_amount              0.0000000  15.0000000   1.6886396   1.0000000
+## tolls_amount            0.0000000   7.0000000   0.3464236   1.0000000
+## improvement_surcharge   0.0000000   0.0000000   0.0000000   1.0000000
+## total_amount          -18.0000000 350.0000000  18.7952314   1.0000000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm.<span class="dv">0</span> =<span class="st"> </span><span class="kw">biglm.big.matrix</span>(mta_tax <span class="op">~</span><span class="st"> </span>tolls_amount, <span class="dt">data =</span> x)
+<span class="kw">print</span>(<span class="kw">summary</span>(lm.<span class="dv">0</span>)<span class="op">$</span>mat)</code></pre></div>
+<pre><code>##              Coef (95% CI) SE   p
+## (Intercept)     0    0   0  0 NaN
+## tolls_amount    0    0   0  0 NaN</code></pre>
+<p><strong>ff</strong></p>
+<p>For ff objects, package <code>ffbase</code> provides basic statistical functions (Jonge, Wijffels and van der Laan, 2014). Additional functions for ff objects are provided in other packages, with examples including biglars for least angle regression and LASSO (Seligman, Fraley and Hesterberg, 2011) and PopGenome for population genetic and genomic analysis (Pfeifer et al., 2014).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ff)
+data &lt;-<span class="st"> </span><span class="kw">read.csv.ffdf</span>(<span class="dt">file=</span><span class="st">&quot;data3.csv&quot;</span>)</code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="taking-r-to-the-limit.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="beyond-the-limits-distributed-processing-frameworks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

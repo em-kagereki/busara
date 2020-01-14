@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Big data analysis: Data analysis, visualization and deployment | BIG DATA ANALYSIS IN R TRAINING (BUSARA)</title>
+  <meta name="description" content="This the text material that will accompany the training" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Big data analysis: Data analysis, visualization and deployment | BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This the text material that will accompany the training" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Big data analysis: Data analysis, visualization and deployment | BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  
+  <meta name="twitter:description" content="This the text material that will accompany the training" />
+  
+
+<meta name="author" content="EDWIN KAGEREKI" />
+
+
+<meta name="date" content="2020-01-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="beyond-the-limits-working-with-databases-in-r.html"/>
+<link rel="next" href="planning-and-implementing-big-data-analysis.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Big Data Training in R - Busara</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> INTRODUCTION</a></li>
+<li class="chapter" data-level="2" data-path="understanding-rs-performance.html"><a href="understanding-rs-performance.html"><i class="fa fa-check"></i><b>2</b> Understanding R’s Performance</a></li>
+<li class="chapter" data-level="3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html"><i class="fa fa-check"></i><b>3</b> Taking R to the limit</a><ul>
+<li class="chapter" data-level="3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#managing-io"><i class="fa fa-check"></i><b>3.1</b> Managing I/O</a></li>
+<li class="chapter" data-level="3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-set-up-pcs."><i class="fa fa-check"></i><b>3.2</b> Efficiently set-up PCs.</a></li>
+<li class="chapter" data-level="3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-write-r-codes."><i class="fa fa-check"></i><b>3.3</b> Efficiently write R codes.</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#duplication"><i class="fa fa-check"></i><b>3.3.1</b> Duplication</a></li>
+<li class="chapter" data-level="3.3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#memory-allocation"><i class="fa fa-check"></i><b>3.3.2</b> Memory allocation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#vectorised-code"><i class="fa fa-check"></i><b>3.3.3</b> Vectorised code</a></li>
+<li class="chapter" data-level="3.3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#caching-variables"><i class="fa fa-check"></i><b>3.3.4</b> Caching variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficient-workflows."><i class="fa fa-check"></i><b>3.4</b> Efficient workflows.</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html"><i class="fa fa-check"></i><b>4</b> Stretching the limits</a><ul>
+<li class="chapter" data-level="4.1" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-computing-power-barrier"><i class="fa fa-check"></i><b>4.1</b> Breaking the computing power barrier</a></li>
+<li class="chapter" data-level="4.2" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-memory-barrier"><i class="fa fa-check"></i><b>4.2</b> Breaking the memory barrier</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html"><i class="fa fa-check"></i><b>5</b> Beyond the limits: distributed processing frameworks</a><ul>
+<li class="chapter" data-level="5.1" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-hadoop."><i class="fa fa-check"></i><b>5.1</b> Introduction to Hadoop.</a></li>
+<li class="chapter" data-level="5.2" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-spark."><i class="fa fa-check"></i><b>5.2</b> Introduction to Spark.</a></li>
+<li class="chapter" data-level="5.3" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#running-r-in-spark."><i class="fa fa-check"></i><b>5.3</b> Running R in Spark.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html"><i class="fa fa-check"></i><b>6</b> Beyond the limits: Working with databases in R</a><ul>
+<li class="chapter" data-level="6.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#overview-of-the-types-of-databases."><i class="fa fa-check"></i><b>6.1</b> Overview of the types of databases.</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-interface"><i class="fa fa-check"></i><b>6.1.1</b> Database Interface</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#connecting-and-exploring"><i class="fa fa-check"></i><b>6.2</b> Connecting and Exploring</a></li>
+<li class="chapter" data-level="6.3" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#read-write-and-modify-database"><i class="fa fa-check"></i><b>6.3</b> Read, write and modify database</a></li>
+<li class="chapter" data-level="6.4" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-queries-with-r"><i class="fa fa-check"></i><b>6.4</b> Database Queries With R</a></li>
+<li class="chapter" data-level="6.5" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#modeling-data-with-modeldb-tidypredict"><i class="fa fa-check"></i><b>6.5</b> modeling data with modeldb &amp; tidypredict</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html"><i class="fa fa-check"></i><b>7</b> Big data analysis: Data analysis, visualization and deployment</a><ul>
+<li class="chapter" data-level="7.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-sources."><i class="fa fa-check"></i><b>7.1</b> Data sources.</a></li>
+<li class="chapter" data-level="7.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-wrangling"><i class="fa fa-check"></i><b>7.2</b> Data wrangling</a></li>
+<li class="chapter" data-level="7.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-mining"><i class="fa fa-check"></i><b>7.3</b> Data mining</a></li>
+<li class="chapter" data-level="7.4" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#business-intelligence"><i class="fa fa-check"></i><b>7.4</b> Business intelligence</a></li>
+<li class="chapter" data-level="7.5" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#statistical-methods"><i class="fa fa-check"></i><b>7.5</b> Statistical methods</a></li>
+<li class="chapter" data-level="7.6" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-modelling"><i class="fa fa-check"></i><b>7.6</b> Data Modelling</a></li>
+<li class="chapter" data-level="7.7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#visualization."><i class="fa fa-check"></i><b>7.7</b> Visualization.</a></li>
+<li class="chapter" data-level="7.8" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment"><i class="fa fa-check"></i><b>7.8</b> Deployment</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment-of-desktop-apps"><i class="fa fa-check"></i><b>7.8.1</b> Deployment of desktop apps</a></li>
+<li class="chapter" data-level="7.8.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-interactive-web-apps"><i class="fa fa-check"></i><b>7.8.2</b> Deploy Interactive web Apps</a></li>
+<li class="chapter" data-level="7.8.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-models-for-mobile-and-embeded-devices"><i class="fa fa-check"></i><b>7.8.3</b> Deploy models for mobile and embeded devices</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Planning and implementing Big Data analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#need-assessment."><i class="fa fa-check"></i><b>8.1</b> Need assessment.</a></li>
+<li class="chapter" data-level="8.2" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#designing-a-workflow."><i class="fa fa-check"></i><b>8.2</b> Designing a workflow.</a></li>
+<li class="chapter" data-level="8.3" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#case-scenarios."><i class="fa fa-check"></i><b>8.3</b> Case scenarios.</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIG DATA ANALYSIS IN R TRAINING (BUSARA)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="big-data-analysis-data-analysis-visualization-and-deployment" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Big data analysis: Data analysis, visualization and deployment</h1>
+<div class="alert alert alert-info">
+<p>
+Chapter objectives:
+</p>
+<ul>
+<li>
+Appreciate veracity,velocity,variety and volume of the data sources.
+</li>
+<li>
+Gain skills for common big data wrangling tasks.
+</li>
+<li>
+Clearly define the analysis methodology for your objective(s): data wrangling,data mining, business intelligence, statistical analysis, modelling algorithms.
+</li>
+<li>
+Clearly define the deployment of the analysis output: Report, API, emails etc.
+</li>
+<li>
+Design appropriate visualizations for analysis output.
+</li>
+</ul>
+</div>
+<p>Big data analytics refers to the practice of putting the data to work–in other words, the process of extracting useful information from large volumes of data through the use of appropriate technologies. There is no exact definition for many of the terms used to denote different types of analytics, as they can be interpreted in different ways and the meaning hence can be subjective. It is important to create a perspective to the objective of analysis task. Although the is no classification of methodologies used in big data I will discuss them in the following categories:</p>
+<ul>
+<li>Data mining.</li>
+<li>Business intelligence.</li>
+<li>Statistical analysis.</li>
+<li>Modelling algorithms.</li>
+<li>Visualization.</li>
+</ul>
+<div id="data-sources." class="section level2">
+<h2><span class="header-section-number">7.1</span> Data sources.</h2>
+<p>Data can be broadly classified as being structured, unstructured, or semi-structured. Although these distinctions have always existed, the classification of data into these categories has become more prominent with the advent of big data.</p>
+<p><strong>Structured</strong></p>
+<p>Structured data, as the name implies, indicates datasets that have a defined organizational structure such as Microsoft Excel or CSV files. In pure database terms, the data should be representable using a schema. As an example, the following table representing the top five happiest countries in the world published by the United Nations in its 2017 World Happiness Index ranking would be an atypical representation of structured data.</p>
+<p>We can clearly define the data types of the columns–Rank, Score, GDP per capita, Social support, Healthy life expectancy, Trust, Generosity, and Dystopia are numerical columns, whereas Country is represented using letters, or more specifically, strings.</p>
+<p><strong>Unstructured</strong></p>
+<p>Unstructured data consists of any dataset that does not have a predefined organizational schema as in the table in the prior section. Spoken words, music, videos, and even books, including this one, would be considered unstructured. This by no means implies that the content doesn’t have organization. Indeed, a book has a table of contents, chapters, subchapters, and an index–in that sense, it follows a definite organization.</p>
+<p>However, it would be futile to represent every word and sentence as being part of a strict set of rules. A sentence can consist of words, numbers, punctuation marks, and so on and does not have a predefined data type as spreadsheets do. To be structured, the book would need to have an exact set of characteristics in every sentence, which would be both unreasonable and impractical.</p>
+<p>Data from social media, such as posts on Twitter, messages from friends on Facebook, and photos on Instagram, are all examples of unstructured data.</p>
+<p>Unstructured data can be stored in various formats. They can be Blobs or, in the case of textual data, freeform text held in a data storage medium. For textual data, technologies such as Lucene/Solr, Elasticsearch, and others are generally used to query, index, and other operations.</p>
+<p><strong>Semi-structured</strong></p>
+<p>Semi-structured data refers to data that has both the elements of an organizational schema as well as aspects that are arbitrary. A personal phone diary (increasingly rare these days!) with columns for name, address, phone number, and notes could be considered a semi-structured dataset. The user might not be aware of the addresses of all individuals and hence some of the entries may have just a phone number and vice versa.</p>
+<p>Similarly, the column for notes may contain additional descriptive information (such as a facsimile number, name of a relative associated with the individual, and so on). It is an arbitrary field that allows the user to add complementary information. The columns for name, address, and phone number can thus be considered structured in the sense that they can be presented in a tabular format, whereas the notes section is unstructured in the sense that it may contain an arbitrary set of descriptive information that cannot be represented in the other columns in the diary.</p>
+<p>In computing, semi-structured data is usually represented by formats, such as JSON, that can encapsulate both structured as well as schemaless or arbitrary associations, generally using key-value pairs. A more common example could be email messages, which have both a structured part, such as name of the sender, time when the message was received, and so on, that is common to all email messages and an unstructured portion represented by the body or content of the email.</p>
+<p>Platforms such as Mongo and CouchDB are generally used to store and query semi-structured datasets.</p>
+</div>
+<div id="data-wrangling" class="section level2">
+<h2><span class="header-section-number">7.2</span> Data wrangling</h2>
+<p>Manipulation of dataframes is a common task when you data analysis. This might involve selecting certain observations (rows) or variables (columns), grouping the data by a certain variable(s), or calculating summary statistics. Other tasks in data manipulation would be to declare a variable as a date/time,manipulate strings amongst other tasks.</p>
+<p>According to some surveys, data analysts spend most of their time cleaning and manipulating data rather than the actual mining or modeling. As such, it becomes important to have tools that make data manipulation faster and easier. <code>tidyverse</code> is an “umbrella-package” that installs a series of packages useful for data analysis which work together well.</p>
+<p>In this subsection, we highlight the packages that may be useful in the data manipulation tasks.</p>
+<ol style="list-style-type: lower-alpha">
+<li><a href="https://dplyr.tidyverse.org/"><code>dplyr</code></a> provides a set of verbs that help us solve the most common data manipulation challenges while working with tabular data (dataframes, tibbles):</li>
+</ol>
+<ul>
+<li><code>mutate()</code> adds new variables that are functions of existing variables</li>
+<li><code>select()</code> picks variables based on their names.</li>
+<li><code>filter()</code> picks cases based on their values.</li>
+<li><code>summarise()</code> reduces multiple values down to a single summary.</li>
+<li><code>arrange()</code> changes the ordering of the rows.</li>
+</ul>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><a href="https://tidyr.tidyverse.org/"><code>tidyr</code></a>: Tidy data describes a standard way of storing data that is used wherever possible throughout the <code>tidyverse</code>. If you ensure that your data is tidy, you’ll spend less time fighting with the tools and more time working on your analysis. The goal of <code>tidyr</code> is to help you create tidy data. Tidy data is data where:</li>
+</ol>
+<ul>
+<li>Every column is variable.</li>
+<li>Every row is an observation.</li>
+<li>Every cell is a single value.</li>
+</ul>
+<ol start="3" style="list-style-type: lower-alpha">
+<li><a href="https://lubridate.tidyverse.org/"><code>lubridate</code></a> : This package offers a more intuitive way to manage daates and time variables in R. Further it offers more robust methods to time zones, leap days, daylight savings times, and other time related quirks. Lubridate also expands the type of mathematical operations that can be performed with date-time objects. It is now possible to calculate the following time spans:</li>
+</ol>
+<ul>
+<li><p>durations, which measure the exact amount of time between two points</p></li>
+<li><p>periods, which accurately track clock times despite leap years, leap seconds, and day light savings time</p></li>
+<li><p>intervals, a protean summary of the time information between two points</p></li>
+</ul>
+<ol start="4" style="list-style-type: lower-alpha">
+<li><a href="https://github.com/tidyverse/hms"><code>hms</code></a>:The hms package provides a simple class for storing durations or time-of-day values and displaying them in the hh:mm:ss format. This class is intended to simplify data exchange with databases, spreadsheets, and other data sources:</li>
+</ol>
+<ul>
+<li>Stores values as a numeric vector that contains the number of seconds since midnight</li>
+<li>Supports construction from explicit hour, minute, or second values</li>
+<li>Supports coercion to and from various data types, including POSIXt</li>
+<li>Can be used as column in a data frame</li>
+<li>Based on the difftime class</li>
+<li>Values can exceed the 24-hour boundary or be negative</li>
+<li>By default, fractional seconds up to a microsecond are displayed, regardless of the value of the “digits.secs” option</li>
+</ul>
+<ol start="5" style="list-style-type: lower-alpha">
+<li><p><a href="https://github.com/tidyverse/blob"><code>blob</code></a>This package provides the blob object, a list of raw vectors, suitable for use as a column in data frame.</p></li>
+<li><p><a href="https://forcats.tidyverse.org/"><code>forcats</code></a> This package provides a suite of tools that solve common problems with factors, including changing the order of levels or the values. Some examples include:</p></li>
+</ol>
+<ul>
+<li><code>fct_reorder()</code>: Reordering a factor by another variable.</li>
+<li><code>fct_infreq()</code>: Reordering a factor by the frequency of values.</li>
+<li><code>fct_relevel()</code>: Changing the order of a factor by hand.</li>
+<li><code>fct_lump()</code>: Collapsing the least/most frequent values of a factor into “other”.</li>
+</ul>
+<ol start="6" style="list-style-type: lower-alpha">
+<li><p><a href="https://stringr.tidyverse.org/"><code>stringr</code></a>The stringr package provide a cohesive set of functions designed to make working with strings as easy as possible. <code>stringr</code> is built on top of <code>stringi</code>, which uses the ICU C library to provide fast, correct implementations of common string manipulations. <code>stringr</code> focusses on the most important and commonly used string manipulation functions whereas <code>stringi</code> provides a comprehensive set covering almost anything you can imagine.</p></li>
+<li><p><a href="https://magrittr.tidyverse.org/"><code>magrittr</code></a>: The magrittr package offers a set of operators which make your code more readable by:</p></li>
+</ol>
+<ul>
+<li>structuring sequences of data operations left-to-right (as opposed to from the inside and out),</li>
+<li>avoiding nested function calls,</li>
+<li>minimizing the need for local variables and function definitions, and</li>
+<li>making it easy to add steps anywhere in the sequence of operations.</li>
+</ul>
+<p>The operators pipe their left-hand side values forward into expressions that appear on the right-hand side, i.e. one can replace f(x) with x %&gt;% f(), where %&gt;% is the (main) pipe-operator.</p>
+<ol start="8" style="list-style-type: lower-alpha">
+<li><a href="https://github.com/tidyverse/glue"><code>glue</code></a>:Glue offers interpreted string literals that are small, fast, and dependency-free. Glue does this by embedding R expressions in curly braces which are then evaluated and inserted into the argument string.</li>
+</ol>
+</div>
+<div id="data-mining" class="section level2">
+<h2><span class="header-section-number">7.3</span> Data mining</h2>
+<p>Data mining refers to the process of discovering interesting knowledge from large amounts of data. It is an interdisciplinary field with contributions from many areas, such as statistics, machine learning, information retrieval, pattern recognition and bioinformatics. Data mining is widely used in many domains, such as retail, finance, telecommunication and social media.</p>
+<p>The main techniques for data mining may include extracting information from datasets through running queries or basic summarization methods such as aggregations, classification and prediction, clustering, outlier detection, association rules, sequence analysis, time series analysis and text mining, and also some new techniques such as social network analysis and sentiment analysis.</p>
+</div>
+<div id="business-intelligence" class="section level2">
+<h2><span class="header-section-number">7.4</span> Business intelligence</h2>
+<p>Business intelligence provides frontend dashboards to enable users to query data using a graphical interface. Dashboard products have gained in prominence in step with the growth of data as users seek to extract information. Easy-to-use interfaces with querying and visualization features that could be used universally by both technical and non-technical users set the groundwork to democratize analytical access to data. To develope a BI dashboard the output (normally KPIs) must be well defined.</p>
+<p>When using R you don’t even need to push prepared data to external presentation tool. You can produce a web application dashboard directly from R. Some tools that maybe useful for this purpose may includ:</p>
+<ul>
+<li>shiny – Web Application Framework for R.</li>
+<li>opencpu – HTTP API to R.</li>
+<li>httpuv – HTTP and WebSocket server library, also the core of shiny package.</li>
+<li>Rook – web server interface for R.</li>
+</ul>
+</div>
+<div id="statistical-methods" class="section level2">
+<h2><span class="header-section-number">7.5</span> Statistical methods</h2>
+<p>Statistical inference helps us make sense of the data by typically considering some quantity that is a function of the data of interest, a statistic. We then use the statistic as an estimator for the value of the parameter of interest.</p>
+<p>Notwithstanding that new statistical thinking and methods are needed for the high variety aspect of big data, our focus is on fitting standard statistical models to big data whose size exceeds the capacity of a single computer from its high volume and high velocity. There are two computational barriers for big data analysis:</p>
+<ol style="list-style-type: decimal">
+<li>the data can be too big to hold in a computer’s memory;</li>
+<li>the computing task can take too long to wait for the results.</li>
+</ol>
+<p>These barriers can be approached with newly developed statistical methodologies and/or computational methodologies. The recent methodologies for big data can be loosely grouped into three categories:</p>
+<ul>
+<li>resampling-based,</li>
+<li>divide and conquer,</li>
+<li>online updating.</li>
+</ul>
+<p>To put the different methods in a context, consider a dataset with <em>n</em> independent and identically distributed observations, where <em>n</em> is too big for standard statistical routines such as linear regression.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Not run: 
+<span class="co"># BLB is meant to run on random replicate divisions</span>
+<span class="co">#devtools::install_github(&quot;delta-rho/datadr&quot;)</span>
+
+<span class="kw">library</span>(datadr)
+data&lt;-iris
+rrAdult &lt;-<span class="st"> </span><span class="kw">divide</span>(data, <span class="dt">by =</span> <span class="kw">rrDiv</span>(<span class="dv">10</span>), <span class="dt">update =</span> <span class="ot">TRUE</span>)
+
+adultBlb &lt;-<span class="st"> </span>rrAdult <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">addTransform</span>(<span class="cf">function</span>(x) {
+  <span class="kw">drBLB</span>(x,
+    <span class="dt">statistic =</span> <span class="cf">function</span>(x, weights)
+      <span class="kw">coef</span>(<span class="kw">lm</span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Sepal.Width,
+        <span class="dt">data =</span> x)),
+    <span class="dt">metric =</span> <span class="cf">function</span>(x)
+      <span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>)),
+    <span class="dt">R =</span> <span class="dv">100</span>,
+    <span class="dt">n =</span> <span class="kw">nrow</span>(rrAdult)
+  )
+})
+
+
+<span class="co"># compute the mean of the resulting CI limits</span>
+<span class="co"># (this will take a little bit of time because of resampling)</span>
+coefs &lt;-<span class="st"> </span><span class="kw">recombine</span>(adultBlb, combMean)
+<span class="kw">matrix</span>(coefs, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##            [,1]       [,2]
+## [1,]  7.4780625  7.4780625
+## [2,] -0.4982455 -0.4982455</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## End(Not run)</code></pre></div>
+</div>
+<div id="data-modelling" class="section level2">
+<h2><span class="header-section-number">7.6</span> Data Modelling</h2>
+<p>Data modelling is often referred to by various names and encompases multiple methods. this oftenly involves application of advanced algorithms that go beyond the realm of traditional statistics. These algorithms inevitably involve running hundreds or thousands of iterations. Such algorithms are not only inherently complex, but also very computationally intensive.</p>
+</div>
+<div id="visualization." class="section level2">
+<h2><span class="header-section-number">7.7</span> Visualization.</h2>
+<p>Visualization is an essential tool for understanding information and uncovering insights hidden in data. Data should be expressed both succinctly and intuitively, using easy-to-understand visual aids. Visualization has played a critical role in understanding data better, especially in the context of analyzing the nature of the dataset and its distribution prior to more in-depth analytics. New visualization methods are available that are well suited to the particular needs of big data in many areas, such as social media analysis, geospatial analysis and sentiment or text analysis. These new visualization methods go far beyond the traditional tables and bar or line charts. There are four basic presentation objectives:</p>
+<ul>
+<li>Comparison</li>
+<li>Composition</li>
+<li>Distribution</li>
+<li>Relationship</li>
+</ul>
+<p>Developments in JavaScript, which saw a resurgence after a long period of quiet, such as D3.js and ECharts from Baidu, are some of the prime examples of visualization packages in the open source domain. Most BI tools contain advanced visualization capabilities and, as such, it has become an indispensable asset for any successful analytics product.</p>
+<p>Functional considerations of visualization for Big Data:</p>
+<ul>
+<li>Dynamic data content: With respect to data that change rapidly and continuously, to have dynamic links to the source data sets is one of the most important requirements for the visualization tools.</li>
+<li>Visual querying. Only in the most recent past – but however before of the explosion of Big Data – the visualization tools enable users to perform visual querying. The ability to run queries on the data by a simple manipulation of visual portions of graphs or charts is crucial when the data reaches such dimensions that they cannot be easily treated numerically.</li>
+<li><p>Multiple-dimension, linked visualization As volume is one of the Big Data peculiarity, the capability to visualize and analyze data by multiple dimensions or attributes is mandatory for high-performing tools.</p></li>
+<li>Animated visualization For the same reason, taking into account another core characteristic of Big data, i.e. the updating velocity, it is advisable to have available functionalities for launching automated and animated scrolls up and down along the dimensions.</li>
+<li><p>Personalization The definition of appropriate policies for users’ access is a constraint for enterprise solutions in order to personalize authorizations, levels, localities, and personal visualization preferences.</p></li>
+</ul>
+</div>
+<div id="deployment" class="section level2">
+<h2><span class="header-section-number">7.8</span> Deployment</h2>
+<div id="deployment-of-desktop-apps" class="section level3">
+<h3><span class="header-section-number">7.8.1</span> Deployment of desktop apps</h3>
+<p>There has been enormous interest in the deployment of the output of R analysis in different platforms. Model deployment is often challenging due to various reasons. Some example challenges are:</p>
+<ul>
+<li>It involves deploying models on heterogenous environments, e.g. edge devices, mobile devices, GPUs, etc.</li>
+<li>It is hard to compress the model to very small size that could fit on devices with limited storage while keeping the same precision and minimizing the overhead to load the model for inference.</li>
+<li>Deployed models sometimes need to process new data records within limited memory on small devices.</li>
+<li>Many deployment environments have bad network connectivity so sometimes cloud solutions may not meet the requirements.</li>
+<li>There’s interest in stronger user data privacy paradigms where user data does not need to leave the mobile device.</li>
+<li>There’s growing demand to perform on-device model-based data filtering before collecting the data.</li>
+</ul>
+</div>
+<div id="deploy-interactive-web-apps" class="section level3">
+<h3><span class="header-section-number">7.8.2</span> Deploy Interactive web Apps</h3>
+<p>The following packages provides functionalities to deploy models in the web environment:</p>
+<ul>
+<li><p>The <a href="https://cran.r-project.org/web/packages/yhatr/index.html">yhatr</a> package allows to deploy, maintain, and invoke models via the <a href="https://www.welcome.ai/tech/data-science/yhat">Yhat</a> REST API.</p></li>
+<li><p>The <a href="https://cran.r-project.org/web/packages/cloudml/index.html">cloudml</a> package provides functionality to easily deploy models to <a href="https://cloud.google.com/ml-engine/">Google Cloud ML Engine</a>.</p></li>
+<li><p>The <a href="https://cran.r-project.org/web/packages/tfdeploy/index.html">tfdeploy</a> package provides functions to run a local test server that supports the same REST API as CloudML and <a href="https://rstudio.com/products/connect/">RStudio Connect</a> .</p></li>
+<li><p>The <a href="https://cran.r-project.org/web/packages/domino/index.html">domino</a> package provides R interface to <a href="https://www.dominodatalab.com/">Domino CLI</a>, a service that makes it easy to run your code on scalable hardware, with integrated version control and collaboration features designed for analytical workflows.</p></li>
+<li><p>The <a href="https://cran.r-project.org/web/packages/tidypredict/index.html">tidypredict</a> package provides functionalities to run predictions inside database. It’s based on dplyr and dbplyr that could translate data manipulations written in R to database queries that can be used later to execute the data transformations and aggregations inside various types of databases.</p></li>
+<li><p>The <a href="https://cran.r-project.org/web/packages/ibmdbR/index.html">ibmdbR</a> package allows many basic and complex R operations to be pushed down into the database, which removes the main memory boundary of R and allows to make full use of parallel processing in the underlying database.</p></li>
+<li><p>The <a href="https://cran.r-project.org/web/packages/sparklyr/index.html">sparklyr</a> package provides bindings to Apache Spark ’s distributed machine learning library and allows to deploy the trained models to clusters. Additionally, the rsparkling package uses sparklyr for Spark job deployment while using h2o package for regular model building.</p></li>
+<li><p>The <a href="https://docs.microsoft.com/en-us/machine-learning-server/r-reference/mrsdeploy/mrsdeploy-package">mrsdeploy</a> package provides functions for establishing a remote session in a console application and for publishing and managing a web service that is backed by the R code block or script you provided.</p></li>
+<li><p>The <a href="https://cran.r-project.org/web/packages/opencpu/index.html">opencpu</a> package provides a server that exposes a simple but powerful HTTP API for RPC and data interchange with R. This provides a reliable and scalable foundation for statistical services or building R web applications.</p></li>
+<li>Several general purpose server/client frameworks for R exist that could help deploy models in server based environments:</li>
+</ul>
+<ol style="list-style-type: lower-alpha">
+<li>The <a href="https://cran.r-project.org/web/packages/Rserve/index.html">Rserve</a> and <a href="https://cran.r-project.org/web/packages/RSclient/index.html">RSclient</a> packages both provide server and client functionality for TCP/IP or local socket interfaces to enable access to R from many languages and systems.</li>
+<li>The <a href="https://cran.r-project.org/web/packages/httpuv/index.html">httpuv</a> package provides a low-level socket and protocol support for handling HTTP and WebSocket requests directly within R.</li>
+</ol>
+<ul>
+<li>Several packages offer functionality for turning R code into a web API:</li>
+</ul>
+<ol style="list-style-type: lower-alpha">
+<li>The <a href="https://cran.r-project.org/web/packages/FastRWeb/index.html">FastRWeb</a> package provides some basic infrastructure for this.</li>
+<li>The <a href="https://cran.r-project.org/web/packages/plumber/index.html">plumber</a> package allows you to create a web API by merely decorating your existing R source code with special comments.</li>
+<li>The <a href="https://github.com/rexyai/RestRserve">RestRserve</a> package is a R web API framework for building high-performance microservices and app backends based on Rserve.</li>
+</ol>
+<ul>
+<li>Shiny Server or docker/plumber or rinno</li>
+</ul>
+</div>
+<div id="deploy-models-for-mobile-and-embeded-devices" class="section level3">
+<h3><span class="header-section-number">7.8.3</span> Deploy models for mobile and embeded devices</h3>
+<p>This section includes packages that provides functionalities to export the trained model to an artifact that could fit in small devices such as mobile devices (e.g. Android, iOS) and edge devices (Rasberri Pi). These packages are built based on different model format.</p>
+<ul>
+<li>Predictive Model Markup Language (PMML) is an XML-based language which provides a way for applications to define statistical and data mining models and to share models between PMML compliant applications. The following packages are based on PMML:</li>
+</ul>
+<ol style="list-style-type: lower-alpha">
+<li>The <a href="https://cran.r-project.org/web/packages/pmml/index.html">pmml</a> package provides the main interface to PMML.</li>
+<li>The <a href="https://cran.r-project.org/web/packages/pmmlTransformations/index.html">pmmlTransformations</a> package allows for data to be transformed before using it to construct models. Builds structures to allow functions in the PMML package to output transformation details in addition to the model in the resulting PMML file.</li>
+<li>The <a href="https://cran.r-project.org/web/packages/rattle/index.html">rattle</a> package allows to load data from a CSV file (or via ODBC), transform and explore the data, build and evaluate models, and export models as PMML or as scores.</li>
+<li>The<a href="https://cran.r-project.org/web/packages/arules/index.html">arules</a>package provides the infrastructure for representing, manipulating and analyzing transaction data and patterns (frequent itemsets and association rules). The associations can be written to disk in PMML.</li>
+<li>The <a href="https://cran.r-project.org/web/packages/arulesSequences/index.html">arulesSequences</a> package is an add-on for arules to handle and mine frequent sequences. The <a href="https://cran.r-project.org/web/packages/arulesCBA/index.html">arulesCBA</a> package provides a function to build an association rule-based classifier for data frames, and to classify incoming data frames using such a classifier.</li>
+</ol>
+<ul>
+<li><p>Plain Old Java Object (POJO) or a Model Object, Optimized (MOJO) are intended to be easily embeddable in any Java environment. The only compilation and runtime dependency for a generated model is a h2o-genmodel.jar file produced as the build output of these packages. The <a href="https://cran.r-project.org/web/packages/h2o/index.html">h2o</a> package provides easy-to-use interface to build a wide range of machine learning models, such as GLM, DRF, and XGBoost models based on <a href="https://cran.r-project.org/web/packages/xgboost/index.html">xgboost</a> package, which can then be exported as MOJO and POJO format. The MOJO and POJO artifacts can then be loaded by its REST interface as well as different language bindings, e.g. Java, Scala, R, and Python.</p></li>
+<li><p>Portable Format for Analytics (PFA) is a specification for event-based processors that perform predictive or analytic calculations and is aimed at helping smooth the transition from statistical model development to large-scale and/or online production. PFA combines the ease of portability across systems with algorithmic flexibility: models, pre-processing, and post-processing are all functions that can be arbitrarily composed, chained, or built into complex workflows. The <a href="https://cran.r-project.org/web/packages/aurelius/index.html">aurelius</a> package provides tools for converting R objects and syntax into the PFA format.</p></li>
+<li><p><a href="https://www.tensorflow.org/">TensorFlow</a> ’s <a href="https://www.tensorflow.org/api_docs/python/tf/saved_model">SavedModel</a> as well as its optimized version <a href="https://www.tensorflow.org/lite">TensorFlow Lite</a> , which uses many techniques for achieving low latency such as optimizing the kernels for mobile apps, pre-fused activations, and quantized kernels that allow smaller and faster (fixed-point math) models. It enables on-device machine learning inference with low latency and small binary size. The packages listed below can produce models in this format. Note that these packages are R wrappers of their corresponding Python API based on the <a href="https://cran.r-project.org/web/packages/reticulate/index.html">reticulate</a> package. Though Python binary is required for creating the models, it’s not required during inference time for deployment.</p></li>
+</ul>
+<ol style="list-style-type: lower-alpha">
+<li>The <a href="https://cran.r-project.org/web/packages/tensorflow/index.html">tensorflow</a> package provides full access to TensorFlow API for numerical computation using data flow graphs.</li>
+<li>The <a href="https://cran.r-project.org/web/packages/tfestimators/index.html">tfestimators</a> package provides high-level API to machine learning models as well as highly customized neural network architectures.</li>
+<li>The <a href="https://cran.r-project.org/web/packages/keras/index.html">keras</a> package high-level API to construct different types of neural networks.</li>
+</ol>
+<ul>
+<li><p>The <a href="https://cran.r-project.org/web/packages/onnx/index.html">onnx</a> package provides the interface to <a href="https://onnx.ai/">Open Neural Network Exchange (ONNX)</a> which is a standard format for models built using different frameworks (e.g. TensorFlow, MXNet, PyTorch, CNTK, etc). It defines an extensible computation graph model, as well as definitions of built-in operators and standard data types. Models trained in one framework can be easily transferred to another framework for inference. This open source format enables the interoperability between different frameworks and streamlining the path from research to production will increase the speed of innovation in the AI community. Note that this package is based on the <a href="https://cran.r-project.org/web/packages/reticulate/index.html">reticulate</a> package to interface with the original Python API so Python binary is required for deployment.</p></li>
+<li><p>The <a href="https://cran.r-project.org/web/packages/mleap/index.html">mleap</a> package is a <a href="https://cran.r-project.org/web/packages/sparklyr/index.html">sparklyr</a> extension that provides an interface to <a href="https://github.com/combust/mleap">MLeap</a> . MLeap is an open source library that enables the persistence of <a href="https://spark.apache.org/">Apache Spark</a> ML pipelines and subsequent deployment in any Java-enabled device or service. At runtime, in addition to the serialized model file, the dependencies are a Java Virtual Machine (JVM) and the MLeap Runtime, and a Spark cluster is not required.</p></li>
+</ul>
+<p>Introduction to reactive tables and graphs.</p>
+<p>platforms: Web applications, reports, mobile applications.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="beyond-the-limits-working-with-databases-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="planning-and-implementing-big-data-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

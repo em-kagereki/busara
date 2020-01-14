@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Beyond the limits: distributed processing frameworks | BIG DATA ANALYSIS IN R TRAINING (BUSARA)</title>
+  <meta name="description" content="This the text material that will accompany the training" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Beyond the limits: distributed processing frameworks | BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This the text material that will accompany the training" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Beyond the limits: distributed processing frameworks | BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  
+  <meta name="twitter:description" content="This the text material that will accompany the training" />
+  
+
+<meta name="author" content="EDWIN KAGEREKI" />
+
+
+<meta name="date" content="2020-01-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="stretching-the-limits.html"/>
+<link rel="next" href="beyond-the-limits-working-with-databases-in-r.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Big Data Training in R - Busara</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> INTRODUCTION</a></li>
+<li class="chapter" data-level="2" data-path="understanding-rs-performance.html"><a href="understanding-rs-performance.html"><i class="fa fa-check"></i><b>2</b> Understanding R’s Performance</a></li>
+<li class="chapter" data-level="3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html"><i class="fa fa-check"></i><b>3</b> Taking R to the limit</a><ul>
+<li class="chapter" data-level="3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#managing-io"><i class="fa fa-check"></i><b>3.1</b> Managing I/O</a></li>
+<li class="chapter" data-level="3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-set-up-pcs."><i class="fa fa-check"></i><b>3.2</b> Efficiently set-up PCs.</a></li>
+<li class="chapter" data-level="3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-write-r-codes."><i class="fa fa-check"></i><b>3.3</b> Efficiently write R codes.</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#duplication"><i class="fa fa-check"></i><b>3.3.1</b> Duplication</a></li>
+<li class="chapter" data-level="3.3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#memory-allocation"><i class="fa fa-check"></i><b>3.3.2</b> Memory allocation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#vectorised-code"><i class="fa fa-check"></i><b>3.3.3</b> Vectorised code</a></li>
+<li class="chapter" data-level="3.3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#caching-variables"><i class="fa fa-check"></i><b>3.3.4</b> Caching variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficient-workflows."><i class="fa fa-check"></i><b>3.4</b> Efficient workflows.</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html"><i class="fa fa-check"></i><b>4</b> Stretching the limits</a><ul>
+<li class="chapter" data-level="4.1" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-computing-power-barrier"><i class="fa fa-check"></i><b>4.1</b> Breaking the computing power barrier</a></li>
+<li class="chapter" data-level="4.2" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-memory-barrier"><i class="fa fa-check"></i><b>4.2</b> Breaking the memory barrier</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html"><i class="fa fa-check"></i><b>5</b> Beyond the limits: distributed processing frameworks</a><ul>
+<li class="chapter" data-level="5.1" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-hadoop."><i class="fa fa-check"></i><b>5.1</b> Introduction to Hadoop.</a></li>
+<li class="chapter" data-level="5.2" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-spark."><i class="fa fa-check"></i><b>5.2</b> Introduction to Spark.</a></li>
+<li class="chapter" data-level="5.3" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#running-r-in-spark."><i class="fa fa-check"></i><b>5.3</b> Running R in Spark.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html"><i class="fa fa-check"></i><b>6</b> Beyond the limits: Working with databases in R</a><ul>
+<li class="chapter" data-level="6.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#overview-of-the-types-of-databases."><i class="fa fa-check"></i><b>6.1</b> Overview of the types of databases.</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-interface"><i class="fa fa-check"></i><b>6.1.1</b> Database Interface</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#connecting-and-exploring"><i class="fa fa-check"></i><b>6.2</b> Connecting and Exploring</a></li>
+<li class="chapter" data-level="6.3" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#read-write-and-modify-database"><i class="fa fa-check"></i><b>6.3</b> Read, write and modify database</a></li>
+<li class="chapter" data-level="6.4" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-queries-with-r"><i class="fa fa-check"></i><b>6.4</b> Database Queries With R</a></li>
+<li class="chapter" data-level="6.5" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#modeling-data-with-modeldb-tidypredict"><i class="fa fa-check"></i><b>6.5</b> modeling data with modeldb &amp; tidypredict</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html"><i class="fa fa-check"></i><b>7</b> Big data analysis: Data analysis, visualization and deployment</a><ul>
+<li class="chapter" data-level="7.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-sources."><i class="fa fa-check"></i><b>7.1</b> Data sources.</a></li>
+<li class="chapter" data-level="7.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-wrangling"><i class="fa fa-check"></i><b>7.2</b> Data wrangling</a></li>
+<li class="chapter" data-level="7.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-mining"><i class="fa fa-check"></i><b>7.3</b> Data mining</a></li>
+<li class="chapter" data-level="7.4" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#business-intelligence"><i class="fa fa-check"></i><b>7.4</b> Business intelligence</a></li>
+<li class="chapter" data-level="7.5" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#statistical-methods"><i class="fa fa-check"></i><b>7.5</b> Statistical methods</a></li>
+<li class="chapter" data-level="7.6" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-modelling"><i class="fa fa-check"></i><b>7.6</b> Data Modelling</a></li>
+<li class="chapter" data-level="7.7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#visualization."><i class="fa fa-check"></i><b>7.7</b> Visualization.</a></li>
+<li class="chapter" data-level="7.8" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment"><i class="fa fa-check"></i><b>7.8</b> Deployment</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment-of-desktop-apps"><i class="fa fa-check"></i><b>7.8.1</b> Deployment of desktop apps</a></li>
+<li class="chapter" data-level="7.8.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-interactive-web-apps"><i class="fa fa-check"></i><b>7.8.2</b> Deploy Interactive web Apps</a></li>
+<li class="chapter" data-level="7.8.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-models-for-mobile-and-embeded-devices"><i class="fa fa-check"></i><b>7.8.3</b> Deploy models for mobile and embeded devices</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Planning and implementing Big Data analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#need-assessment."><i class="fa fa-check"></i><b>8.1</b> Need assessment.</a></li>
+<li class="chapter" data-level="8.2" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#designing-a-workflow."><i class="fa fa-check"></i><b>8.2</b> Designing a workflow.</a></li>
+<li class="chapter" data-level="8.3" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#case-scenarios."><i class="fa fa-check"></i><b>8.3</b> Case scenarios.</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIG DATA ANALYSIS IN R TRAINING (BUSARA)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="beyond-the-limits-distributed-processing-frameworks" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Beyond the limits: distributed processing frameworks</h1>
+<div class="alert alert alert-info">
+<p>
+Chapter objectives:
+</p>
+<ul>
+<li>
+<p>
+Understand distributed processing with examples of Spark, Hadoop, and
+</p>
+</li>
+<li>
+<p>
+Understand the Hadoop ecosystem.
+</p>
+</li>
+<li>
+<p>
+Understand the Spark ecosystem.
+</p>
+</li>
+<li>
+<p>
+Run a data analysis task in Spark cluster.
+</p>
+</li>
+</ul>
+</div>
+<p>In this chapter we will consider the very high limits of large-scale data processing. Processing and analyzing Big Data is extremely challenging for traditional data processing tools. We have already established that large datasets of this scale cannot be loaded into the RAM memory and sometimes cannot even fit in the storage of your computer; this is when distributed processing frameworks integrated with R , is an ideal solution.</p>
+<p>Distributed processing frameworks like <a href="https://hadoop.apache.org/">Hadoop</a>, <a href="https://spark.apache.org/">Spark</a> or <a href="https://flink.apache.org/ecosystem.html">Flink</a> are scalable for complex operations and tasks on large datasets but do not have strong statistical analytical capabilities. Fortunately implementing R in these frameworks provides highly scalable data analytics platform which can be scaled depending on the size of the dataset. This integration lets R run in parallel on large dataset as none of the data science libraries in R language will work on a dataset that is larger than its memory.</p>
+<div id="introduction-to-hadoop." class="section level2">
+<h2><span class="header-section-number">5.1</span> Introduction to Hadoop.</h2>
+<p>Hadoop is the technology to store massive datasets on a cluster of cheap machines in a distributed manner. It is an open-source software developed as a project by Apache Software Foundation. In the year 2008 Yahoo gave Hadoop to Apache Software Foundation. Since then two versions of Hadoop have been released Version 1.0 in the year 2011 and version 2.0.6 in the year 2013. Hadoop has also been compiled into various distributions like Cloudera, IBM BigInsight, MapR and Hortonworks.</p>
+<p><strong>The Hadoop architecture</strong></p>
+<p><img src="images/Hadoop-Ecosystem-01.png" width="100.8%" /></p>
+<p>At the core, we have HDFS for data storage, map-reduce for data processing and Yarn a resource manager. Then we have HIVE a data analysis tool, Pig – SQL like a scripting language, HBase – NoSQL database, Mahout – machine learning tool, Zookeeper – a synchronization tool, Oozie – workflow scheduler system, Sqoop – structured data importing and exporting utility, Flume – data transfer tool for unstructured and semi-structured data, Ambari – a tool for managing and securing Hadoop clusters, and lastly Avro – RPC, and data serialization framework.</p>
+<p><strong>RHadoop</strong></p>
+<p>RHadoop is a collection of five R packages that allow users to manage and analyze data with Hadoop. The packages have been tested (and always before a release) on recent releases of the Cloudera and Hortonworks Hadoop distributions and should have broad compatibility with open source Hadoop and mapR’s distribution. We normally test on recent Revolution R/Microsoft R and CentOS releases, but we expect all the RHadoop packages to work on a recent release of open source R and Linux.</p>
+<p>RHadoop consists of the following packages:</p>
+<ul>
+<li><p><code>rhdfs</code> - This package provides basic connectivity to the Hadoop Distributed File System. R programmers can browse, read, write, and modify files stored in HDFS from within R. This package is only installed on the node that will run the R client.</p></li>
+<li><p><code>rhbase</code>- This package provides basic connectivity to the <code>HBASE</code> distributed database, using the Thrift server. R programmers can browse, read, write, and modify tables stored in <code>HBASE</code> from within R. This package is only installed on the node that will run the R client.</p></li>
+<li><p><code>plyrmr</code>- This package enables the R user to perform common data manipulation operations, as found in popular packages such as<code>plyr</code> and <code>reshape2</code>, on very large data sets stored on Hadoop. Like <code>rmr</code>, it relies on Hadoop MapReduce to perform its tasks, but it provides a familiar plyr-like interface while hiding many of the MapReduce details. This package should be installed on every node in the cluster.</p></li>
+<li><p><code>rmr2</code> - This package allows R developer to perform statistical analysis in R via Hadoop MapReduce functionality on a Hadoop cluster. This package should be installed on every node in the cluster.</p></li>
+<li><p><code>ravro</code> - This package adds the ability to read and write <code>avro files</code> from local and HDFS file system and adds an avro input format for <code>rmr2</code>. This package is only installed on the node that will run the R client.</p></li>
+</ul>
+<p><strong>Using R in Hadoop</strong></p>
+<p>Generally we have four options for building R to Hadoop integration using entirely open source stacks. It is worth while to note that there are other commercial options.</p>
+<p><span style="color:blue"> <strong>Option 1: Install R on workstations and connect to data in Hadoop.</strong> </span></p>
+<p>This baseline approach’s greatest advantage is simplicity and cost. It’s free.</p>
+<p>This approach uses open source packages like <code>rhdfs</code> and <code>rhbase</code>. This provides a simple way to directly ingest data from both the hdfs file system and the hbase database subsystems into Hadoop. Both connectors are part of the <code>RHadoop</code> package.</p>
+<p>Optionally the <code>RHive</code> package executes Hive’s HQL SQL-like query language directly from R, and provides functions for retrieving metadata from Hive such as database names, table names, column names, etc.</p>
+<p><span style="color:blue"> <strong>Option 2: Install R on a shared server and connect to Hadoop.</strong> </span></p>
+<p>Like option 1, R on a shared server can also leverage push-down capabilities of the <code>rhbase</code> and <code>rhive</code> packages to achieve parallelism and avoid data movement. However, as with workstations, the pushdown capabilities of <code>rhive</code> and <code>rhbase</code> are limited.</p>
+<p><span style="color:blue"> <strong>Option 3: Utilize Revolution R Open</strong> </span></p>
+<p>Replacing the CRAN download of R with the R distribution: Revolution R Open (RRO) enhances performance further. It accelerates math computations using the Intel Math Kernel Libraries and is 100% compatible with the algorithms in CRAN and other repositories like BioConductor. No changes are required to R scripts, and the acceleration the MKL libraries offer varies from negligible to an order of magnitude for scripts making intensive use of certain math and linear algebra primitives. You can anticipate that RRO can double your average performance if you’re doing math operations in the language.</p>
+<p>As with options 1 and 2, Revolution R Open can be used with connectors like <code>rhdfs</code>, and can connect and push work down into Hadoop through rhbase and rhive.</p>
+<p><span style="color:blue"> <strong>Option 4: Execute R inside of MapReduce using RMR2.</strong> </span></p>
+<p>Limitations of <code>rhbase</code> and <code>rhive</code> push down method can be overcome by running R inside of Hadoop.</p>
+<p>The open source <code>RHadoop</code> project includes <code>rhdfs</code>, <code>rhbase</code> and <code>plyrmr</code> and <code>rmr2</code> packages. The <code>rmr2</code> package enables R users to build Hadoop map and reduce operations using R functions. Using mappers, R functions are applied to all of the data blocks that compose an <code>hdfs file</code>, an <code>hbase table</code> or other data sets, and the results can be sent to a reducer, also an R function, for aggregation or analysis. All work is conducted inside of Hadoop but is built in R.</p>
+<p><code>rmr2</code> is not the only option in this category – a similar package called <code>rhipe</code> is also and provides similar capabilities. <code>rhipe</code> is downloadable from GitHub.</p>
+</div>
+<div id="introduction-to-spark." class="section level2">
+<h2><span class="header-section-number">5.2</span> Introduction to Spark.</h2>
+<p><a href="https://spark.apache.org/">Apache Spark</a> is a general-purpose &amp; lightning fast cluster computing platform. It is an open source, wide range data processing engine that enables streaming, machine learning or SQL workloads which demand repeated access to data sets.</p>
+<p>It is designed in such a way that it integrates with all the Big data tools. Like spark can access any Hadoop data source, also can run on Hadoop clusters. Furthermore, Apache Spark extends Hadoop MapReduce to the next level. That also includes iterative queries and stream processing. Apache Spark offers high-level APIs to users, such as Java, Scala, Python, and R. Although, Spark is written in Scala still offers rich APIs in Scala, Java, Python, as well as R. We can say, it is a tool for running spark applications.</p>
+<p>Most importantly, by comparing Spark with Hadoop, it is 100 times faster than Hadoop In-Memory mode and 10 times faster than Hadoop On-Disk mode.</p>
+<p><strong>Apache Spark Components</strong></p>
+<p>In this Apache Spark Tutorial, we discuss Spark Components. It puts the promise for faster data processing as well as easier development. It is only possible because of its components. All these Spark components resolved the issues that occurred while using Hadoop MapReduce.</p>
+<p>Now let’s discuss each Spark Ecosystem Component one by one-</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Spark Core Spark Core is a central point of Spark. Basically, it provides an execution platform for all the Spark applications. Moreover, to support a wide array of applications, Spark Provides a generalized platform.</p></li>
+<li><p>Spark SQL On the top of Spark, Spark SQL enables users to run SQL/HQL queries. We can process structured as well as semi-structured data, by using Spark SQL. Moreover, it offers to run unmodified queries up to 100 times faster on existing deployments.</p></li>
+<li><p>Spark Streaming Basically, across live streaming, Spark Streaming enables a powerful interactive and data analytics application. Moreover, the live streams are converted into micro-batches those are executed on top of spark core.</p></li>
+<li><p>Spark MLlib Machine learning library delivers both efficiencies as well as the high-quality algorithms. Moreover, it is the hottest choice for a data scientist. Since it is capable of in-memory data processing, that improves the performance of iterative algorithm drastically.</p></li>
+<li><p>SparkR Basically, to use Apache Spark from R. It is R package that gives light-weight frontend. Moreover, it allows data scientists to analyze large datasets. Also allows running jobs interactively on them from the R shell. Although, the main idea behind SparkR was to explore different techniques to integrate the usability of R with the scalability of Spark.</p></li>
+<li><p>Spark GraphX Basically, Spark GraphX is the graph computation engine built on top of Apache Spark that enables to process graph data at scale.</p></li>
+</ol>
+</div>
+<div id="running-r-in-spark." class="section level2">
+<h2><span class="header-section-number">5.3</span> Running R in Spark.</h2>
+<ol style="list-style-type: lower-alpha">
+<li>Installing Java</li>
+</ol>
+<p>I will hereby demonstrate how to setup Spark and run R within it, both as a stand alone and as a cluster.</p>
+<p>Spark is built in the Scala programming language, which is run by the Java Virtual Machine (JVM), you also need to install Java 8 on your system. It is likely that your system already has Java installed, but you should still check the version and update or downgrade as described in <a href="https://www.java.com/en/download/">Installing Java</a>. You can use the following R command to check which version is installed on your system:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system</span>(<span class="st">&quot;java -version&quot;</span>)</code></pre></div>
+<p>You can also use the JAVA_HOME environment variable to point to a specific Java version by running Sys.setenv(JAVA_HOME = “path-to-java-8”); either way, before moving on to installing sparklyr, make sure that Java 8 is the version available for R.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Installing sparklyr</li>
+</ol>
+<p>As with many other R packages, you can install sparklyr from CRAN as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;sparklyr&quot;)</span></code></pre></div>
+<p>The examples in this book assume you are using the latest version of sparklyr. You can verify your version is as new as the one we are using by running the following:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">packageVersion</span>(<span class="st">&quot;sparklyr&quot;</span>)</code></pre></div>
+<pre><code>## [1] &#39;1.1.0&#39;</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Installing Spark</li>
+</ol>
+<p>Start by loading sparklyr:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sparklyr)</code></pre></div>
+<p>This makes all sparklyr functions available in R, which is really helpful; otherwise, you would need to run each sparklyr command prefixed with sparklyr::.</p>
+<p>You can easily install Spark by running spark_install(). This downloads, installs, and configures the latest version of Spark locally on your computer; however, because we’ve written this book with Spark 2.3, you should also install this version to make sure that you can follow all the examples provided without any surprises:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">spark_available_versions</span>() <span class="co"># To check the versions available for instalation</span></code></pre></div>
+<pre><code>##   spark
+## 1   1.6
+## 2   2.0
+## 3   2.1
+## 4   2.2
+## 5   2.3
+## 6   2.4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">spark_install</span>(<span class="st">&quot;2.4&quot;</span>) <span class="co"># You may install a specific version by altering that option</span>
+<span class="kw">spark_installed_versions</span>() <span class="co"># To check the installed verion</span></code></pre></div>
+<pre><code>##   spark hadoop                                           dir
+## 1 2.4.3    2.7 /home/rstudio/spark/spark-2.4.3-bin-hadoop2.7
+## 2 2.4.4    2.7 /home/rstudio/spark/spark-2.4.4-bin-hadoop2.7</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Connecting</li>
+</ol>
+<p>It’s important to mention that, so far, we’ve installed only a local Spark cluster. A local cluster is really helpful to get started, test code, and troubleshoot with ease. Later chapters explain where to find, install, and connect to real Spark clusters with many machines, but for the first few chapters, we focus on using local clusters.</p>
+<p>The following are the recommended Spark properties to set when connecting via R:</p>
+<ul>
+<li><p>sparklyr.cores.local - It defaults to using all of the available cores. Not a necessary property to set, unless there’s a reason to use less cores than available for a given Spark session.</p></li>
+<li><p>sparklyr.shell.driver-memory - The limit is the amount of RAM available in the computer minus what would be needed for OS operations.</p></li>
+<li><p>spark.memory.fraction - The default is set to 60% of the requested memory per executor. For more information, please see this Memory Management Overview page in the official Spark website</p></li>
+</ul>
+<p>To connect to this local cluster, simply run the following:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sparklyr)
+
+conf &lt;-<span class="st"> </span><span class="kw">spark_config</span>()
+conf<span class="op">$</span><span class="st">`</span><span class="dt">sparklyr.cores.local</span><span class="st">`</span> &lt;-<span class="st"> </span><span class="dv">4</span>
+conf<span class="op">$</span><span class="st">`</span><span class="dt">sparklyr.shell.driver-memory</span><span class="st">`</span> &lt;-<span class="st"> &quot;16G&quot;</span>
+conf<span class="op">$</span>spark.memory.fraction &lt;-<span class="st"> </span><span class="fl">0.9</span>
+
+sc &lt;-<span class="st"> </span><span class="kw">spark_connect</span>(<span class="dt">master =</span> <span class="st">&quot;local&quot;</span>, 
+                    <span class="dt">version =</span> <span class="st">&quot;2.4&quot;</span>,
+                    <span class="dt">config =</span> conf)
+
+
+<span class="co">#sc &lt;- spark_connect(master = &quot;local&quot;, version = &quot;2.4&quot;)</span>
+<span class="co">#spark_web(sc)</span></code></pre></div>
+<p>After a connection is established, spark_connect() retrieves an active Spark connection, which most code usually names sc; you will then make use of the connection to execute Spark commands.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Using Spark</li>
+</ol>
+<p>Now that you are connected, we can run a few simple commands. For instance, let’s start by copying the mtcars dataset into Apache Spark by using copy_to():</p>
+<p><strong>Reading data</strong> The data was copied into Spark, but we can access it from R using the data reference.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data&lt;-<span class="kw">read.csv</span>(<span class="st">&quot;data3.csv&quot;</span>)
+data &lt;-<span class="st"> </span><span class="kw">copy_to</span>(sc, data)
+data</code></pre></div>
+<pre><code>## # Source: spark&lt;data&gt; [?? x 5]
+##    mta_tax tip_amount tolls_amount improvement_surcharge total_amount
+##      &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;                 &lt;dbl&gt;        &lt;dbl&gt;
+##  1     0.5       0            0                      0.3         21.8
+##  2     0.5       0            0                      0.3         36.3
+##  3     0.5       5.05         0                      0.3         25.4
+##  4     0.5       0            0                      0.3          8.3
+##  5     0.5       2.45         0                      0.3         14.8
+##  6     0.5       0            0                      0.3         55.3
+##  7     0.5       0            0                      0.3         10.3
+##  8     0.5      11.7          5.76                   0.3         70.3
+##  9     0.5       3.36         0                      0.3         20.2
+## 10     0.5       0            0                      0.3          5.8
+## # … with more rows</code></pre>
+<p>You have successfully connected and loaded your first dataset into Spark.</p>
+<p>Let’s explain what’s going on in copy_to(). The first parameter, sc, gives the function a reference to the active Spark connection that was created earlier with spark_connect(). The second parameter specifies a dataset to load into Spark. Now, copy_to() returns a reference to the dataset in Spark, which R automatically prints. Whenever a Spark dataset is printed, Spark collects some of the records and displays them for you.</p>
+<p><strong>Simple analysis</strong></p>
+<p>When using Spark from R to analyze data, you can use SQL (Structured Query Language) or dplyr (a grammar of data manipulation). You can use SQL through the DBI package; for instance, to count how many records are available in our cars dataset, we can run the following:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DBI)
+<span class="kw">dbGetQuery</span>(sc, <span class="st">&quot;SELECT count(*) FROM data&quot;</span>)</code></pre></div>
+<pre><code>##   count(1)
+## 1      713</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="stretching-the-limits.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="beyond-the-limits-working-with-databases-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Beyond the limits: Working with databases in R | BIG DATA ANALYSIS IN R TRAINING (BUSARA)</title>
+  <meta name="description" content="This the text material that will accompany the training" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Beyond the limits: Working with databases in R | BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This the text material that will accompany the training" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Beyond the limits: Working with databases in R | BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  
+  <meta name="twitter:description" content="This the text material that will accompany the training" />
+  
+
+<meta name="author" content="EDWIN KAGEREKI" />
+
+
+<meta name="date" content="2020-01-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="beyond-the-limits-distributed-processing-frameworks.html"/>
+<link rel="next" href="big-data-analysis-data-analysis-visualization-and-deployment.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Big Data Training in R - Busara</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> INTRODUCTION</a></li>
+<li class="chapter" data-level="2" data-path="understanding-rs-performance.html"><a href="understanding-rs-performance.html"><i class="fa fa-check"></i><b>2</b> Understanding R’s Performance</a></li>
+<li class="chapter" data-level="3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html"><i class="fa fa-check"></i><b>3</b> Taking R to the limit</a><ul>
+<li class="chapter" data-level="3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#managing-io"><i class="fa fa-check"></i><b>3.1</b> Managing I/O</a></li>
+<li class="chapter" data-level="3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-set-up-pcs."><i class="fa fa-check"></i><b>3.2</b> Efficiently set-up PCs.</a></li>
+<li class="chapter" data-level="3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-write-r-codes."><i class="fa fa-check"></i><b>3.3</b> Efficiently write R codes.</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#duplication"><i class="fa fa-check"></i><b>3.3.1</b> Duplication</a></li>
+<li class="chapter" data-level="3.3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#memory-allocation"><i class="fa fa-check"></i><b>3.3.2</b> Memory allocation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#vectorised-code"><i class="fa fa-check"></i><b>3.3.3</b> Vectorised code</a></li>
+<li class="chapter" data-level="3.3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#caching-variables"><i class="fa fa-check"></i><b>3.3.4</b> Caching variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficient-workflows."><i class="fa fa-check"></i><b>3.4</b> Efficient workflows.</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html"><i class="fa fa-check"></i><b>4</b> Stretching the limits</a><ul>
+<li class="chapter" data-level="4.1" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-computing-power-barrier"><i class="fa fa-check"></i><b>4.1</b> Breaking the computing power barrier</a></li>
+<li class="chapter" data-level="4.2" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-memory-barrier"><i class="fa fa-check"></i><b>4.2</b> Breaking the memory barrier</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html"><i class="fa fa-check"></i><b>5</b> Beyond the limits: distributed processing frameworks</a><ul>
+<li class="chapter" data-level="5.1" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-hadoop."><i class="fa fa-check"></i><b>5.1</b> Introduction to Hadoop.</a></li>
+<li class="chapter" data-level="5.2" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-spark."><i class="fa fa-check"></i><b>5.2</b> Introduction to Spark.</a></li>
+<li class="chapter" data-level="5.3" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#running-r-in-spark."><i class="fa fa-check"></i><b>5.3</b> Running R in Spark.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html"><i class="fa fa-check"></i><b>6</b> Beyond the limits: Working with databases in R</a><ul>
+<li class="chapter" data-level="6.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#overview-of-the-types-of-databases."><i class="fa fa-check"></i><b>6.1</b> Overview of the types of databases.</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-interface"><i class="fa fa-check"></i><b>6.1.1</b> Database Interface</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#connecting-and-exploring"><i class="fa fa-check"></i><b>6.2</b> Connecting and Exploring</a></li>
+<li class="chapter" data-level="6.3" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#read-write-and-modify-database"><i class="fa fa-check"></i><b>6.3</b> Read, write and modify database</a></li>
+<li class="chapter" data-level="6.4" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-queries-with-r"><i class="fa fa-check"></i><b>6.4</b> Database Queries With R</a></li>
+<li class="chapter" data-level="6.5" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#modeling-data-with-modeldb-tidypredict"><i class="fa fa-check"></i><b>6.5</b> modeling data with modeldb &amp; tidypredict</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html"><i class="fa fa-check"></i><b>7</b> Big data analysis: Data analysis, visualization and deployment</a><ul>
+<li class="chapter" data-level="7.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-sources."><i class="fa fa-check"></i><b>7.1</b> Data sources.</a></li>
+<li class="chapter" data-level="7.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-wrangling"><i class="fa fa-check"></i><b>7.2</b> Data wrangling</a></li>
+<li class="chapter" data-level="7.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-mining"><i class="fa fa-check"></i><b>7.3</b> Data mining</a></li>
+<li class="chapter" data-level="7.4" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#business-intelligence"><i class="fa fa-check"></i><b>7.4</b> Business intelligence</a></li>
+<li class="chapter" data-level="7.5" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#statistical-methods"><i class="fa fa-check"></i><b>7.5</b> Statistical methods</a></li>
+<li class="chapter" data-level="7.6" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-modelling"><i class="fa fa-check"></i><b>7.6</b> Data Modelling</a></li>
+<li class="chapter" data-level="7.7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#visualization."><i class="fa fa-check"></i><b>7.7</b> Visualization.</a></li>
+<li class="chapter" data-level="7.8" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment"><i class="fa fa-check"></i><b>7.8</b> Deployment</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment-of-desktop-apps"><i class="fa fa-check"></i><b>7.8.1</b> Deployment of desktop apps</a></li>
+<li class="chapter" data-level="7.8.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-interactive-web-apps"><i class="fa fa-check"></i><b>7.8.2</b> Deploy Interactive web Apps</a></li>
+<li class="chapter" data-level="7.8.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-models-for-mobile-and-embeded-devices"><i class="fa fa-check"></i><b>7.8.3</b> Deploy models for mobile and embeded devices</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Planning and implementing Big Data analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#need-assessment."><i class="fa fa-check"></i><b>8.1</b> Need assessment.</a></li>
+<li class="chapter" data-level="8.2" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#designing-a-workflow."><i class="fa fa-check"></i><b>8.2</b> Designing a workflow.</a></li>
+<li class="chapter" data-level="8.3" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#case-scenarios."><i class="fa fa-check"></i><b>8.3</b> Case scenarios.</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIG DATA ANALYSIS IN R TRAINING (BUSARA)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="beyond-the-limits-working-with-databases-in-r" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Beyond the limits: Working with databases in R</h1>
+<div class="alert alert alert-info">
+<p>
+Chapter objectives:
+</p>
+<ul>
+<li>
+Overview of the types of databases.
+</li>
+<li>
+Connect to various database in R
+</li>
+<li>
+Read &amp; write data in the database
+</li>
+<li>
+Run a query against a database table in R
+</li>
+<li>
+Modeling data with modeldb &amp; tidypredict
+</li>
+<li>
+Visualize data with dbplot.
+</li>
+<li>
+Handling credentials
+</li>
+</ul>
+</div>
+<div id="overview-of-the-types-of-databases." class="section level2">
+<h2><span class="header-section-number">6.1</span> Overview of the types of databases.</h2>
+<p>Google defines database as “a structured set of data held in a computer, especially one that is accessible in various ways.” At its most basic, a database is just a way of storing and organizing information. Ideally it is organized in such a way that it can be easily accessed, managed, and updated.</p>
+<p>SQL stands for Structured Query language, pronounced as “S-Q-L” or sometimes as “See-Quel”. SQL is the standard language for dealing with Relational Databases. SQL can be used to insert, search, update and delete database records. SQL can do lots of other operations including optimizing and maintenance of databases. Relational databases like MySQL Database, Oracle, Ms SQL server, Sybase, etc uses SQL.</p>
+<p>NoSQL is an upcoming category of Database Management Systems. Its main characteristic is its non-adherence to Relational Database Concepts. NOSQL means “Not only SQL”.</p>
+<div id="database-interface" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Database Interface</h3>
+<p>A database management system (DBMS) interface is a user interface which allows for the ability to input queries to a database without using the query language itself. R needs an interface to connect to any database.</p>
+<p>There are many interfaces that you may use. A short description of each is given before the reader is given the practical application of these interfaces:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://cran.r-project.org/web/packages/DBI/index.html">DBI package.</a> This is the most common and advisable interaface. it uses the native database driver implemented in database package (e.g. RPostgresSQL). Please check the <a href="https://db.rstudio.com/databases">list</a> of known database packages. Connecting to a database with a method that supports the DBI package provides the following advantages:</li>
+</ol>
+<ul>
+<li>A consistent set of functions that work across all connections</li>
+<li>Makes using dplyr as a front-end possible</li>
+</ul>
+<p>This article is geared toward those who need to connect to an existing database using an ODBC driver. An ODBC driver uses the Open Database Connectivity (ODBC) interface by Microsoft that allows applications to access data in database management systems (DBMS) using SQL as a standard for accessing the data.</p>
+<p>Most open source data bases will sufficiently use the DBI package without extra drivers to connect. The reader is encouraged to <a href="https://www.goodfirms.co/blog/top-10-free-and-open-source-database-management-software-solutions">read more</a> for an update of the various open source databases.</p>
+<p><img src="images/open-source.png" width="684" /></p>
+<div class="alert alert-success">
+<p>
+Tips and summary:
+</p>
+<ol style="list-style-type: decimal">
+<li>
+<p>
+If there is a need to connect to several databases in one or several R projects, then it would be preferable to use ODBC for all connections because it increases consistency.
+</p>
+</li>
+<li>
+<p>
+For new projects, if using ODBC is still not a viable option, then using an R package that implements a DBI back-end for the JDBC connection will be advisable, like RJDBC. There are other packages that implement both a DBI back-end for a JDBC connection and a dplyr translation, such as <a href="https://github.com/ianmcook/implyr">implyr</a> for Impala connections.
+</p>
+</li>
+</ol>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li><a href="https://cran.r-project.org/web/packages/odbc/index.html">ODBC</a> as implemented in odbc package. This provides a DBI-compliant interface to Open Database Connectivity (ODBC) drivers. This allows for an efficient, easy to setup connection to any database with ODBC drivers available.</li>
+</ol>
+<p>Most commercial databases, like Oracle and Microsoft SQL Server, offer ODBC drivers that allow you to connect your tool to the database. Even though there are R packages that allow you to use ODBC drivers, the connection will most likely not be compatible with DBI. The new odbc package solves that problem by providing a DBI backend to any ODBC driver connection.</p>
+<p>Developers can If create personalised packages that connects DBI to a database, please review the article <a href="https://db.rstudio.com/advanced/backend/">DBI Backend</a>.</p>
+<p><img src="images/commercial.png" width="661" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li><a href="http://www.rforge.net/RJDBC/">JDBC</a>. This provides a DBI interface using JDBC as a back-end. The only requirement is working Java and a JDBC driver for the database engine to be accessed.</li>
+</ol>
+</div>
+</div>
+<div id="connecting-and-exploring" class="section level2">
+<h2><span class="header-section-number">6.2</span> Connecting and Exploring</h2>
+<p>The first step is to connect to the database and explore the database, list the tables present and the fields/columns in those tables. We will illustrate this by connecting to a MySQL database hosted on AWS and learn how to specify the host, port, username, password etc.</p>
+<p>To connect to the database, we will use dbConnect() from the DBI package which defines a common interface between R and database management systems. Please check the step by step on the reading of data into R.</p>
+<p>In the example we use the <a href="https://cran.r-project.org/web/packages/RMySQL/RMySQL.pdf">RMySQL package</a> as a database interface and ‘MySQL’ Driver for R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DBI)
+<span class="kw">library</span>(dbplyr)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(dbplot)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(modeldb)
+<span class="kw">library</span>(tidypredict)
+<span class="kw">library</span>(config)
+<span class="kw">library</span>(RMySQL) 
+<span class="kw">library</span>(odbc)
+
+cn &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(<span class="dt">drv=</span> RMySQL<span class="op">::</span><span class="kw">MySQL</span>(),
+                <span class="dt">username =</span> <span class="kw">Sys.getenv</span>(<span class="st">&quot;userid&quot;</span>),
+                <span class="dt">password =</span> <span class="kw">Sys.getenv</span>(<span class="st">&quot;pwd&quot;</span>),
+                <span class="dt">host     =</span> <span class="st">&quot;healthmate.c080qh65xpeg.us-west-2.rds.amazonaws.com&quot;</span>,
+                <span class="dt">port     =</span> <span class="dv">3306</span>,
+                <span class="dt">dbname   =</span> <span class="st">&quot;healthmatedb&quot;</span>)</code></pre></div>
+<p>After connecting to teh database, you may wish to explore a few propoerties of the connection:</p>
+<ol style="list-style-type: decimal">
+<li>Connection Summary</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Understand the connection
+<span class="co">#summary(cn)</span>
+<span class="co">#dbGetInfo(cn)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>List Tables</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#dbListResults(cn)</span>
+<span class="co">#dbListTables(cn)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>List fields in a table</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#DBI::dbListFields(cn, &quot;airline&quot;)</span></code></pre></div>
+</div>
+<div id="read-write-and-modify-database" class="section level2">
+<h2><span class="header-section-number">6.3</span> Read, write and modify database</h2>
+<ol style="list-style-type: decimal">
+<li>Read data</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#read entire table - If the data is bigger than the available RAM then the data will not load.</span>
+
+<span class="co">#data&lt;-dbReadTable(cn, &quot;airline&quot;)</span>
+
+## read few rows
+
+
+data&lt;-<span class="st"> </span>DBI<span class="op">::</span><span class="kw">dbGetQuery</span>(cn, <span class="st">&quot;select * from airline limit 10&quot;</span>)
+
+
+<span class="co"># Read Data in Batches</span>
+
+
+<span class="co">#query  &lt;- DBI::dbSendQuery(cn, &#39;select * from airline&#39;)</span>
+<span class="co">#batch1&lt;- DBI::dbFetch(query, n = 10)</span>
+<span class="co">#batch2&lt;- DBI::dbFetch(query, n = 10)</span>
+<span class="co">#query # To see the summary of the querry</span>
+
+<span class="co">#DBI::dbHasCompleted(query) #Query Status</span>
+
+<span class="co">#DBI::dbGetInfo(query) #Query Info</span>
+<span class="co">#DBI::dbGetStatement(query)#Latest Query</span>
+
+<span class="co">#DBI::dbGetRowCount(query)#Rows Fetched</span>
+
+<span class="co">#DBI::dbColumnInfo(query) # Column Info, returns a dataframe</span>
+ 
+<span class="co">#DBI::dbClearResult(query) #Clear Results</span>
+
+
+
+
+
+<span class="co">#dbWriteTable(cn, &quot;adjudicateddata&quot;, as.data.frame(data),overwrite=FALSE, append=TRUE, row.names = FALSE)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Write data into database</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#check if a table exists</span>
+
+<span class="co">#DBI::dbExistsTable(cn, &quot;airline&quot;)</span>
+
+<span class="co">#Create Table</span>
+
+<span class="co">#DBI::dbWriteTable(cn, &quot;name of the table in database&quot;, name of the dataset used to create the table in the databas)</span>
+
+<span class="co">#Overwrite Table</span>
+<span class="co">#DBI::dbWriteTable(cn, &quot;trial_db&quot;, trial2_data, overwrite = TRUE)</span>
+
+<span class="co">#append data to a table</span>
+<span class="co">#DBI::dbWriteTable(cn, &quot;trial_db&quot;, trial3_data, append = TRUE)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Modify database</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Insert Rows</span>
+
+<span class="co">#DBI::dbExecute(cn,&quot;INSERT into trial_db (x, y) VALUES (32, &#39;c&#39;)&quot;)</span>
+<span class="co">#DBI::dbSendStatement(cn,&quot;INSERT into trial_db (x, y) VALUES (32, &#39;c&#39;)&quot;)</span>
+
+
+<span class="co"># Remove Table</span>
+<span class="co">#DBI::dbRemoveTable(cn, &quot;airline&quot;)</span></code></pre></div>
+</div>
+<div id="database-queries-with-r" class="section level2">
+<h2><span class="header-section-number">6.4</span> Database Queries With R</h2>
+<p>There are many ways to query data with R. This article shows you three of the most common ways:</p>
+<ol style="list-style-type: decimal">
+<li>Using DBI</li>
+</ol>
+<p>You can query your data with DBI by using the dbGetQuery() function. Simply paste your SQL code into the R function as a quoted string. This method is sometimes referred to as pass through SQL code, and is probably the simplest way to query your data. Care should be used to escape your quotes as needed. For example, ‘yes’ is written as 'yes'.</p>
+<p>This requires a proper understanding MySQL querry landuage.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#res &lt;- dbSendQuery(cn, &quot;SELECT * FROM icd ORDER BY Code&quot;)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Using dplyr syntax</li>
+</ol>
+<p>the preferred way is to write your code in dplyr syntax, and dplyr will translate your code into SQL. There are several benefits to writing queries in dplyr syntax: you can keep the same consistent language both for R objects and database tables, no knowledge of SQL or the specific SQL variant is required, and you can take advantage of the fact that dplyr uses lazy evaluation. dplyr syntax is easy to read, but you can always inspect the SQL translation with the show_query() function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">airline2 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">tbl</span>(cn, <span class="st">&quot;airline&quot;</span>)
+
+
+summary_DEST &lt;-<span class="st"> </span>airline2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(DEST) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(DEP_DELAY, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
+            <span class="dt">std_dev =</span> <span class="kw">sd</span>(DEP_DELAY, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))
+
+dplyr<span class="op">::</span><span class="kw">show_query</span>(summary_DEST)</code></pre></div>
+<pre><code>## &lt;SQL&gt;
+## SELECT `DEST`, AVG(`DEP_DELAY`) AS `mean`, STDDEV_SAMP(`DEP_DELAY`) AS `std_dev`
+## FROM `airline`
+## GROUP BY `DEST`</code></pre>
+</div>
+<div id="modeling-data-with-modeldb-tidypredict" class="section level2">
+<h2><span class="header-section-number">6.5</span> modeling data with modeldb &amp; tidypredict</h2>
+<p>The modeldb package fits models inside database by using dplyr and dbplyr for SQL translation of the algorithms and currently supports linear regression and k-means clustering.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(modeldb)
+airline2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(DEP_DELAY_NEW, ARR_DELAY_NEW) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>modeldb<span class="op">::</span><span class="kw">linear_regression_db</span>(DEP_DELAY_NEW)</code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   `(Intercept)` ARR_DELAY_NEW
+##           &lt;dbl&gt;         &lt;dbl&gt;
+## 1        -0.237         0.924</code></pre>
+<p>The main goal of tidypredict is to enable running predictions inside databases. It reads the model, extracts the components needed to calculate the prediction, and then creates an R formula that can be translated into SQL. In other words, it is able to parse a model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidypredict)
+model &lt;-<span class="st"> </span><span class="kw">lm</span>(DEP_DELAY_NEW <span class="op">~</span><span class="st"> </span>ARR_DELAY_NEW, <span class="dt">data =</span> airline2)
+
+data&lt;-airline2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>tidypredict<span class="op">::</span><span class="kw">tidypredict_to_column</span>(model) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(DEP_DELAY_NEW, fit)</code></pre></div>
+<p><strong>Visualizing data in databases</strong></p>
+<p>The <code>dbplot</code> package leverages <code>dplyr</code> to process the underlying data computations of a plot inside a database. It uses <code>ggplot2</code> to generate the following plots:</p>
+<ul>
+<li>Histogram</li>
+<li>Raster</li>
+<li>Bar Plot</li>
+<li>Line plot</li>
+<li>Boxplot</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">airline2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dbplot<span class="op">::</span><span class="kw">dbplot_bar</span>(DEST) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">xlab</span>(<span class="st">&quot;DESTINATION&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggtitle</span>(<span class="st">&quot;Distribution of Destinations&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><strong>Handling Credentials</strong></p>
+<p>In handling database credentials is one of the most important aspect. In this section, we will look at the different options for securely storing and accessing credentials.</p>
+<ol style="list-style-type: decimal">
+<li>rstudioapi</li>
+</ol>
+<p>To achieve this we can prompt the user to enter the database credentials using RStudio IDE. <code>askForPassword()</code> will show a popup box that masks what is typed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#db_con &lt;- DBI::dbConnect(drv      = RMySQL::MySQL(), </span>
+<span class="co">#                         username = rstudioapi::askForPassword(&quot;Database Username&quot;),</span>
+ <span class="co">#                        password = rstudioapi::askForPassword(&quot;Database Password&quot;),</span>
+  <span class="co">#                       host     = &quot;healthmate.c080qh65xpeg.us-west-2.rds.amazonaws.com&quot;, </span>
+   <span class="co">#                      port     = 3306, </span>
+    <span class="co">#                    dbname   = &quot;healthmatedb&quot;)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>.Renviron</li>
+</ol>
+<p>In the .Renviron file we can define the credentials as shown below:</p>
+<p><code>userid = &quot;username&quot;</code> <code>pwd    = &quot;password&quot;</code></p>
+<p>The credentials can then be retrieved using Sys.getenv() as shown in the below example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#db_con &lt;- DBI::dbConnect(drv      = RMySQL::MySQL(), </span>
+<span class="co">#                         username = Sys.getenv(&quot;db_uid&quot;), </span>
+<span class="co">#                         password = Sys.getenv(&quot;db_pwd&quot;), </span>
+<span class="co">#                         host     = &quot;healthmate.c080qh65xpeg.us-west-2.rds.amazonaws.com&quot;, </span>
+ <span class="co">#                        port     = 3306, </span>
+ <span class="co">#                        dbname   = &quot;healthmatedb&quot;)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="beyond-the-limits-distributed-processing-frameworks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="big-data-analysis-data-analysis-visualization-and-deployment.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

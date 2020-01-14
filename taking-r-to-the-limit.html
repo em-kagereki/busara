@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Taking R to the limit | BIG DATA ANALYSIS IN R TRAINING (BUSARA)</title>
+  <meta name="description" content="This the text material that will accompany the training" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Taking R to the limit | BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This the text material that will accompany the training" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Taking R to the limit | BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  
+  <meta name="twitter:description" content="This the text material that will accompany the training" />
+  
+
+<meta name="author" content="EDWIN KAGEREKI" />
+
+
+<meta name="date" content="2020-01-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="understanding-rs-performance.html"/>
+<link rel="next" href="stretching-the-limits.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Big Data Training in R - Busara</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> INTRODUCTION</a></li>
+<li class="chapter" data-level="2" data-path="understanding-rs-performance.html"><a href="understanding-rs-performance.html"><i class="fa fa-check"></i><b>2</b> Understanding R’s Performance</a></li>
+<li class="chapter" data-level="3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html"><i class="fa fa-check"></i><b>3</b> Taking R to the limit</a><ul>
+<li class="chapter" data-level="3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#managing-io"><i class="fa fa-check"></i><b>3.1</b> Managing I/O</a></li>
+<li class="chapter" data-level="3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-set-up-pcs."><i class="fa fa-check"></i><b>3.2</b> Efficiently set-up PCs.</a></li>
+<li class="chapter" data-level="3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-write-r-codes."><i class="fa fa-check"></i><b>3.3</b> Efficiently write R codes.</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#duplication"><i class="fa fa-check"></i><b>3.3.1</b> Duplication</a></li>
+<li class="chapter" data-level="3.3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#memory-allocation"><i class="fa fa-check"></i><b>3.3.2</b> Memory allocation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#vectorised-code"><i class="fa fa-check"></i><b>3.3.3</b> Vectorised code</a></li>
+<li class="chapter" data-level="3.3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#caching-variables"><i class="fa fa-check"></i><b>3.3.4</b> Caching variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficient-workflows."><i class="fa fa-check"></i><b>3.4</b> Efficient workflows.</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html"><i class="fa fa-check"></i><b>4</b> Stretching the limits</a><ul>
+<li class="chapter" data-level="4.1" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-computing-power-barrier"><i class="fa fa-check"></i><b>4.1</b> Breaking the computing power barrier</a></li>
+<li class="chapter" data-level="4.2" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-memory-barrier"><i class="fa fa-check"></i><b>4.2</b> Breaking the memory barrier</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html"><i class="fa fa-check"></i><b>5</b> Beyond the limits: distributed processing frameworks</a><ul>
+<li class="chapter" data-level="5.1" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-hadoop."><i class="fa fa-check"></i><b>5.1</b> Introduction to Hadoop.</a></li>
+<li class="chapter" data-level="5.2" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-spark."><i class="fa fa-check"></i><b>5.2</b> Introduction to Spark.</a></li>
+<li class="chapter" data-level="5.3" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#running-r-in-spark."><i class="fa fa-check"></i><b>5.3</b> Running R in Spark.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html"><i class="fa fa-check"></i><b>6</b> Beyond the limits: Working with databases in R</a><ul>
+<li class="chapter" data-level="6.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#overview-of-the-types-of-databases."><i class="fa fa-check"></i><b>6.1</b> Overview of the types of databases.</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-interface"><i class="fa fa-check"></i><b>6.1.1</b> Database Interface</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#connecting-and-exploring"><i class="fa fa-check"></i><b>6.2</b> Connecting and Exploring</a></li>
+<li class="chapter" data-level="6.3" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#read-write-and-modify-database"><i class="fa fa-check"></i><b>6.3</b> Read, write and modify database</a></li>
+<li class="chapter" data-level="6.4" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-queries-with-r"><i class="fa fa-check"></i><b>6.4</b> Database Queries With R</a></li>
+<li class="chapter" data-level="6.5" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#modeling-data-with-modeldb-tidypredict"><i class="fa fa-check"></i><b>6.5</b> modeling data with modeldb &amp; tidypredict</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html"><i class="fa fa-check"></i><b>7</b> Big data analysis: Data analysis, visualization and deployment</a><ul>
+<li class="chapter" data-level="7.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-sources."><i class="fa fa-check"></i><b>7.1</b> Data sources.</a></li>
+<li class="chapter" data-level="7.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-wrangling"><i class="fa fa-check"></i><b>7.2</b> Data wrangling</a></li>
+<li class="chapter" data-level="7.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-mining"><i class="fa fa-check"></i><b>7.3</b> Data mining</a></li>
+<li class="chapter" data-level="7.4" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#business-intelligence"><i class="fa fa-check"></i><b>7.4</b> Business intelligence</a></li>
+<li class="chapter" data-level="7.5" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#statistical-methods"><i class="fa fa-check"></i><b>7.5</b> Statistical methods</a></li>
+<li class="chapter" data-level="7.6" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-modelling"><i class="fa fa-check"></i><b>7.6</b> Data Modelling</a></li>
+<li class="chapter" data-level="7.7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#visualization."><i class="fa fa-check"></i><b>7.7</b> Visualization.</a></li>
+<li class="chapter" data-level="7.8" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment"><i class="fa fa-check"></i><b>7.8</b> Deployment</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment-of-desktop-apps"><i class="fa fa-check"></i><b>7.8.1</b> Deployment of desktop apps</a></li>
+<li class="chapter" data-level="7.8.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-interactive-web-apps"><i class="fa fa-check"></i><b>7.8.2</b> Deploy Interactive web Apps</a></li>
+<li class="chapter" data-level="7.8.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-models-for-mobile-and-embeded-devices"><i class="fa fa-check"></i><b>7.8.3</b> Deploy models for mobile and embeded devices</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Planning and implementing Big Data analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#need-assessment."><i class="fa fa-check"></i><b>8.1</b> Need assessment.</a></li>
+<li class="chapter" data-level="8.2" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#designing-a-workflow."><i class="fa fa-check"></i><b>8.2</b> Designing a workflow.</a></li>
+<li class="chapter" data-level="8.3" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#case-scenarios."><i class="fa fa-check"></i><b>8.3</b> Case scenarios.</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIG DATA ANALYSIS IN R TRAINING (BUSARA)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="taking-r-to-the-limit" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Taking R to the limit</h1>
+<div class="alert alert alert-info">
+<p>
+Training objectives:
+</p>
+<ul>
+<li>
+Efficient I/O.
+</li>
+<li>
+Efficient R start-up.
+</li>
+<li>
+Memory efficient coding.
+</li>
+<li>
+Parrallel computing.
+</li>
+<li>
+Understand external memory algorithms.
+</li>
+</ul>
+</div>
+<p>The content of this chapter will help a programmer who wishes to analyse datasets in either category 1 or 2 below. In this chapter we will learn different ways that we can optimise R to get the maximum performance. This chapter starts with the initial discussion on how to efficently run R, not only for big data but for any statistical program.</p>
+<ol style="list-style-type: decimal">
+<li>Your data fits in RAM, but is too big to compute with.</li>
+<li>Your data does not fit in RAM, but fits in your local storage (HD, SSD, etc.)</li>
+<li>Your data does not fit in your local storage.</li>
+</ol>
+<p>Thereafter we discuss analysis of big data in R under the following categories:</p>
+<p><strong>Prerequisites</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;rio&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;readr&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;data.table&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;feather&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;microbenchmark&quot;</span>)</code></pre></div>
+<div id="managing-io" class="section level2">
+<h2><span class="header-section-number">3.1</span> Managing I/O</h2>
+<p>R can read data from a variety of sources. Importing datasets into R, and exporting them to the world outside the R ecosystem, can be a slow and frustrating process. If the process is slow or abortive, this can represent a major inefficiency right at the outset of a project.</p>
+<p>Conversely, reading and writing your data efficiently will make it much easier for your R projects to interact with the outside world. This section explains how to efficiently read a wide range of datasets into R. We seek to answer the following questions:</p>
+<ol style="list-style-type: decimal">
+<li><p>Which is the most efficient way to save data from R?</p></li>
+<li><p>Which is the most efficient way to read data into R?</p></li>
+<li><p>How do we write efficient code for unstructured data?</p></li>
+</ol>
+<p><strong>Data Input</strong></p>
+<p>Most of the this has been discussed in chapter 2, where we can conclude that if the data format is uniform for each column:</p>
+<ul>
+<li><p>For data around 1 MB <code>read.csv()</code> is faster than <code>read_csv()</code> while <code>fread()</code> is much faster than both, although these savings are likely to be inconsequential for such small datasets.</p></li>
+<li><p>For files beyond 100 MB in size <code>fread()</code> and <code>read_csv()</code> can be expected to be around 5 times faster than <code>read.csv()</code>.</p></li>
+<li><p><code>readr</code> and base methods can be made significantly faster by pre-specifying the column types at the outset (see below).</p></li>
+<li><p>There is a benefit of switching to <code>fread()</code> and (eventually) to <code>read_csv()</code> as the dataset size increases. For a small ( 1 MB) dataset: <code>fread()</code> is around 5 times faster than base R</p></li>
+</ul>
+<p>Further, where there is a trade-off between speed and robustness, the following considerations are to be made:</p>
+<ul>
+<li><p>For uniform data all reading methods yield the same result.</p></li>
+<li><p>For columns that are obviously characters the base method results in factors (unless <code>stringsAsFactors</code> is set to <code>FALSE</code>) whereas <code>fread()</code> and <code>read_csv()</code> functions return characters.</p></li>
+<li><p>For columns in which the first 1000 rows are of one type but which contain anomalies, <code>fread()</code> coerces the result to characters. <code>read_csv()</code> keep the class that is correct for the first 1000 rows and sets the anomalous records to NA.</p></li>
+<li><p><code>read_*()</code> functions generate objects of class <code>tbl_df</code>, an extension of the <code>data.frame</code> class,<code>fread()</code> generates objects of class <code>data.table()</code>. These can be used as standard data frames but differ subtly in their behaviour.</p></li>
+<li><p>Further, <code>read_csv()</code> creates data frames of class <code>tbl_df</code>, and the <code>data.frame</code>. This makes no practical difference, unless the tibble package is loaded.</p></li>
+</ul>
+<p>In addition to concepts that have been discussed above there are other important ways that can improve the data input:</p>
+<ol style="list-style-type: decimal">
+<li>Versatile data import with rio</li>
+</ol>
+<p><code>rio</code> allows you to import files in almost any format using one, typically single-argument, function. <code>import()</code> infers the file format from the file’s extension and calls the appropriate data import function for you, returning a simple data.frame. As fully illustrated within the Rio vignette (which can be found at <a href="https://cran.r-project.org/web/packages/rio/vignettes/rio.html" class="uri">https://cran.r-project.org/web/packages/rio/vignettes/rio.html</a>), there are multiple formats that are supported for import and export:</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Divide and rule: Preprocessing data outside R</li>
+</ol>
+<p>There are circumstances when datasets become too large to read directly into R. For example reading in a 4 GB data file using the functions tested above maybe too slow and inefficient to read as a single file. The following command, using the Linux command line ‘shell’ (or Windows based Linux shell emulator Cygwin) command split, for example, will break a large multi GB file into many chunks, each of which is more manageable for R:</p>
+<p>Go to tools - shell, then run the code:</p>
+<p><code>split -bxm nameoffile.csv</code></p>
+<p><code>x is the number of mbs that you want ot split the data to</code></p>
+<p>The result is a series of smaller files. By default these will be called xaa, xab and can be read in one chunk at a time (e.g. using read.csv(), fread() or read_csv(), described in the previous section) without crashing most modern computers.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Reading unstructured data.</li>
+</ol>
+<p>Sources of unstructured data are multiple.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Memory friendly packages.</li>
+</ol>
+<p>Data maybe read using packages such as bigmemory, ff. The reader should appreciate that these packages offer</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">###library(bigmemory)
+###system.time(read.big.matrix(&#39;data3.csv&#39;, header = T))
+
+###library(ff)
+###system.time(read.csv.ffdf(file = &#39;data3.csv&#39;, header = T))
+
+###library(sqldf)
+###system.time(read.csv.sql(&#39;data3.csv&#39;))</code></pre></div>
+<p>Split and save as feather or RDS</p>
+<div class="alert alert-success">
+<p>
+Tips and summary: TIPS: <a href="https://inbo.github.io/tutorials/tutorials/r_large_data_files_handling/#sqldftit" class="uri">https://inbo.github.io/tutorials/tutorials/r_large_data_files_handling/#sqldftit</a>
+</p>
+<ul>
+<li>
+<p>
+If you can comfortably work with the entire file in memory, but reading the file is rather slow, consider using the data.table package and read the file with its fread function.
+</p>
+</li>
+<li>
+If your file does not comfortably fit in memory:
+</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>
+Use sqldf if you have to stick to csv files.
+</li>
+<li>
+Use a SQLite database and query it using either SQL queries or dplyr.
+</li>
+<li>
+Convert your csv file to a sqlite database in order to query
+</li>
+</ol>
+<p>
+fread and read_delim are indeed much faster then the default read.table. However, the result of fread is a data.table and the result of read_delim is a tibble. Both are not a data.frame. The data.table package describes the data.table object as a more performant replacement for the data.frame. This means that selecting, filtering and aggregating data is much faster on a data.table compared to the standard data.frame but it requires you to use a slightly different syntax. A tibble is very similar to a data.frame, but provides more convenience when printing or subsetting the data table.
+</p>
+</div>
+</div>
+<div id="efficiently-set-up-pcs." class="section level2">
+<h2><span class="header-section-number">3.2</span> Efficiently set-up PCs.</h2>
+<p>An efficient computer set-up is analogous to a well-tuned vehicle. Its components work in harmony. It is well-serviced. It’s fast!</p>
+<p>This section describes the set-up that will enhance productivity. It explores how the operating system, R version, startup files and IDE can make your R work faster. Understanding and at times changing these set-up options can speed up R. By the end of this chapter you should understand how to set-up your computer and R installation for optimal efficiency. We will the following topics:</p>
+<p><strong>R version: how to keep your base R installation and packages up-to-date</strong></p>
+<p>R is a mature and stable language so well-written code in base R should work on most versions. However, it is important to keep your R version relatively up-to-date, because:</p>
+<ul>
+<li>Bug fixes are introduced in each version, making errors less likely;</li>
+<li>Performance enhancements are made from one version to the next, meaning your code may run faster in later versions;</li>
+<li>Many R packages only work on recent versions on R.</li>
+</ul>
+<div class="alert alert alert-warning">
+<p>
+Exercises:
+</p>
+<ul>
+<li>
+<p>
+What version of R are you using? Is it the most up-to-date?
+</p>
+</li>
+<li>
+<p>
+Do any of your packages need updating?
+</p>
+</li>
+</ul>
+<p>
+To update packages automatically, you can add the line update.packages(ask = FALSE) to your .Rprofile startup file (see the next section for more on .Rprofile).
+</p>
+<p>
+or update.packages() # update installed CRAN packages
+</p>
+</div>
+<p><strong>R start-up: how and why to adjust your .Rprofile and .Renviron files</strong></p>
+<p>R was designed to be used from shared computing resources such as linux servers. As a result R’s startup offers lots of opportunity for customization; both for every user of a system as well as for each individual user. However this flexibility comes at a cost: <em>complexity</em>. However most R users can ignore the majority of this complexity and focus on two main files.</p>
+<ol style="list-style-type: lower-alpha">
+<li>.Renviron - which contains environment variables to be set in R sessions.</li>
+</ol>
+<p>The <code>.Renviron</code> file is most useful for defining sensitive information such as API keys (such as GitHub or twitter) as well as R specific environment variables like the history size <code>(R_HISTSIZE=100000)</code> and default library locations <code>R_LIBS_USER</code>.</p>
+<p>The <code>.Renviron file</code> contains lists of environment variables to set. This is not R code, it uses a format similar to that used on the command line shell.</p>
+<p>The easiest way to edit .Renviron is by running</p>
+<ul>
+<li><p><code>usethis::edit_r_environ()</code> will open your user .Renviron which is in your home</p></li>
+<li><p><code>usethis::edit_r_environ(&quot;project&quot;)</code> will open the one in a project</p></li>
+</ul>
+<p>A simple example of a .Renviron file is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#usethis::edit_r_environ()</span>
+R_HISTSIZE=<span class="dv">100000</span></code></pre></div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>.Rprofile - which contains R code to be run in each session.</li>
+</ol>
+<p>The .Rprofile file contains R code to be run when R starts up. It is run after the .Renviron file is sourced. Typically .Rprofile is located in the users’ home directory (~/.Rprofile), however a different location can be configured by setting the R_PROFILE_USER environment variable.</p>
+<p>The easiest way to edit .Rprofile is by running usethis::edit_r_profile(). Some common you ca do with the <code>.RProfile</code> include:</p>
+<ol style="list-style-type: decimal">
+<li>Set a default CRAN mirror</li>
+<li>Write a welcome message</li>
+<li>Customize their R prompt</li>
+<li>Change options, screen width, numeric display</li>
+<li>Load frequently used packages (but be very careful)</li>
+<li>Aliases / shortcuts for frequently used functions</li>
+</ol>
+<p>The following is an example of <code>.Rprofile</code> file:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width=</span><span class="dv">65</span>, <span class="dt">digits=</span><span class="dv">5</span>)
+<span class="kw">options</span>(<span class="dt">show.signif.stars=</span><span class="ot">FALSE</span>)
+<span class="kw">setHook</span>(<span class="kw">packageEvent</span>(<span class="st">&quot;grDevices&quot;</span>, <span class="st">&quot;onLoad&quot;</span>),
+        <span class="cf">function</span>(...) grDevices<span class="op">::</span><span class="kw">ps.options</span>(<span class="dt">horizontal=</span><span class="ot">FALSE</span>))
+<span class="kw">set.seed</span>(<span class="dv">1234</span>)
+.First &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">   Karibu Edwin&quot;</span>)
+.Last &lt;-<span class="st"> </span><span class="cf">function</span>()  <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">   Kwaheri ya kuonana&quot;</span>)</code></pre></div>
+<p><strong>BLAS and alternative R interpreters: looks at ways to make R faster</strong></p>
+<p>Many statistical algorithms manipulate matrices. R uses the Basic Linear Algebra System (BLAS) framework for linear algebra operations. Whenever we carry out a matrix operation, such as transpose or finding the inverse, we use the underlying BLAS library. By switching to a different BLAS library, it may be possible to speed-up your R code.</p>
+<p>The two open source alternative BLAS libraries are ATLAS and OpenBLAS. The Intel MKL is another implementation, designed for Intel processors by Intel and used in Revolution R (described in the next section) but it requires licensing fees. The MKL library is provided with the Revolution analytics system. Depending on your application, by switching your BLAS library, linear algebra operations can run several times faster than with the base BLAS routines.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;benchmarkme&quot;</span>)
+<span class="kw">get_linear_algebra</span>() <span class="co"># check whether you have a BLAS library setting with the following function</span></code></pre></div>
+<pre><code>## $blas
+## [1] &quot;/usr/lib/openblas-base/libblas.so.3&quot;
+## 
+## $lapack
+## [1] &quot;/usr/lib/libopenblasp-r0.2.18.so&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#res = benchmark_std() # run a suit of tests to test R&#39;s performance</span></code></pre></div>
+<p>Alternative interpreters have been developed to try to make R faster and, while promising, none of the following options has fully taken off.</p>
+<p><a href="https://mran.microsoft.com/open">Microsoft R Open</a>, formerly known as Revolution R Open (RRO), is the enhanced distribution of R from Microsoft. The key enhancement is that it uses multi-threaded mathematics libraries, which can improve performance.</p>
+<p><a href="http://www.pqr-project.org/">pqrR (pretty quick R)</a> is a new version of the R interpreter. One major downside, is that it is based on R-2.15.0. The developer (Radford Neal) has made many improvements, some of which have now been incorporated into base R. pqR is an open-source project licensed under the GPL. One notable improvement in pqR is that it is able to do some numeric computations in parallel with each other, and with other operations of the interpreter, on systems with multiple processors or processor cores.</p>
+<p><a href="https://www.renjin.org/">Renjin</a> reimplements the R interpreter in Java, so it can run on the Java Virtual Machine (JVM). Since R will be pure Java, it can run anywhere.</p>
+<p><a href="https://www.tibco.com/products/tibco-spotfire">Tibco</a> created a C++ based interpreter called TERR.</p>
+<p>Oracle also offer an R-interpreter that uses Intel’s mathematics library and therefore achieves a higher performance without changing R’s core.</p>
+<p>Switching interpreters is something to consider carefully. But in the future, it may become more routine.</p>
+</div>
+<div id="efficiently-write-r-codes." class="section level2">
+<h2><span class="header-section-number">3.3</span> Efficiently write R codes.</h2>
+<p>In this section we will discuss “big picture” programming techniques. We cover general concepts and R programming techniques about code optimisation, before describing idiomatic programming structures. We conclude the chapter by examining relatively easy ways of speeding up code using the compiler package and parallel processing, using multiple CPUs.</p>
+<div class="alert alert-success">
+<p>
+Tip:
+</p>
+<p>
+Rememeber R is an interpreted language, so a golden rule in R programming is to access the underlying C/Fortran routines as quickly as possible; the fewer functions calls required to achieve this, the better.
+</p>
+</div>
+<div id="duplication" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Duplication</h3>
+<p>A pernicious source of slow R code is growing an object with a loop. Whenever you use c(), append(), cbind(), rbind(), or paste() to create a bigger object, R must first allocate space for the new object and then copy the old object to its new home. If you’re repeating this many times, like in a for loop, this can be quite expensive. You’ve entered Circle 2 of the <a href="http://www.burns-stat.com/pages/Tutor/R_inferno.pdf">R inferno</a>.</p>
+<p>Here’s a little example that shows the problem. We first generate some random strings, and then combine them either iteratively with a loop using collapse(), or in a single pass using paste(). Note that the performance of collapse() gets relatively worse as the number of strings grows: combining 100 strings takes almost 30 times longer than combining 10 strings.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">random_string &lt;-<span class="st"> </span><span class="cf">function</span>() {
+  <span class="kw">paste</span>(<span class="kw">sample</span>(letters, <span class="dv">50</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>), <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)
+}
+strings10 &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">10</span>, <span class="kw">random_string</span>())
+strings100 &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">random_string</span>())
+
+collapse &lt;-<span class="st"> </span><span class="cf">function</span>(xs) {
+  out &lt;-<span class="st"> &quot;&quot;</span>
+  <span class="cf">for</span> (x <span class="cf">in</span> xs) {
+    out &lt;-<span class="st"> </span><span class="kw">paste0</span>(out, x)
+  }
+  out
+}
+
+<span class="kw">microbenchmark</span>(
+  <span class="dt">loop10  =</span> <span class="kw">collapse</span>(strings10),
+  <span class="dt">loop100 =</span> <span class="kw">collapse</span>(strings100),
+  <span class="dt">vec10   =</span> <span class="kw">paste</span>(strings10, <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>),
+  <span class="dt">vec100  =</span> <span class="kw">paste</span>(strings100, <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)
+)</code></pre></div>
+<pre><code>## Unit: microseconds
+##     expr     min       lq     mean  median       uq      max
+##   loop10  20.972  22.7730  53.1962  24.124  25.2415 2879.773
+##  loop100 739.103 820.3150 830.9802 834.088 853.0385  925.390
+##    vec10   4.927   5.7575   6.2408   6.137   6.4835   17.994
+##   vec100  38.880  43.0810  45.4358  44.252  45.8395   87.088
+##  neval
+##    100
+##    100
+##    100
+##    100</code></pre>
+</div>
+<div id="memory-allocation" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Memory allocation</h3>
+<p>A general technique is to be careful with memory allocation. If possible pre-allocate a vector then fill in the values. You should also consider pre-allocating memory for data frames and lists. Never grow an object.</p>
+<p>Let’s consider three methods of creating a sequence of numbers.</p>
+<ul>
+<li><p>Method 1 creates an empty vector and gradually increases (or grows) the length of the vector.</p></li>
+<li><p>Method 2 creates an object of the final length and then changes the values in the object by subscripting:</p></li>
+<li><p>Method 3 directly creates the final object</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">method1 =<span class="st"> </span><span class="cf">function</span>(n) {
+  vec =<span class="st"> </span><span class="ot">NULL</span> <span class="co"># Or vec = c()</span>
+  <span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">seq_len</span>(n))
+    vec =<span class="st"> </span><span class="kw">c</span>(vec, i)
+  vec
+}
+
+
+method2 =<span class="st"> </span><span class="cf">function</span>(n) {
+  vec =<span class="st"> </span><span class="kw">numeric</span>(n)
+  <span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">seq_len</span>(n))
+    vec[i] =<span class="st"> </span>i
+  vec
+}
+
+method3 =<span class="st"> </span><span class="cf">function</span>(n) <span class="kw">seq_len</span>(n)
+
+
+<span class="co">#microbenchmark(times = 100000, unit = &quot;s&quot;, </span>
+<span class="co">#               method1(n), method2(n), method3(n))</span></code></pre></div>
+</div>
+<div id="vectorised-code" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Vectorised code</h3>
+<p>Many R functions are vectorised, that is the function’s inputs and/or outputs naturally work with vectors, reducing the number of function calls required. For example, the code</p>
+<p>To revisit this search “vectorised functions in R”</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N=<span class="dv">5000</span>
+monte_carlo =<span class="st"> </span><span class="cf">function</span>(N) {
+  hits =<span class="st"> </span><span class="dv">0</span>
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_len</span>(N)) {
+    u1 =<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>)
+    u2 =<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>)
+    <span class="cf">if</span> (u1 <span class="op">^</span><span class="st"> </span><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span>u2)
+      hits =<span class="st"> </span>hits <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+  }
+  <span class="kw">return</span>(hits <span class="op">/</span><span class="st"> </span>N)
+}
+
+
+monte_carlo_vec =<span class="st"> </span><span class="cf">function</span>(N) <span class="kw">sum</span>(<span class="kw">runif</span>(N)<span class="op">^</span><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="kw">runif</span>(N))<span class="op">/</span>N
+
+<span class="kw">microbenchmark</span>(monte_carlo,monte_carlo_vec)</code></pre></div>
+<pre><code>## Unit: nanoseconds
+##             expr min lq   mean median uq   max neval
+##      monte_carlo  80 82 236.46     82 88 15342   100
+##  monte_carlo_vec  80 82  90.04     82 87   625   100</code></pre>
+</div>
+<div id="caching-variables" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> Caching variables</h3>
+<p>A straightforward method for speeding up code is to calculate objects once and reuse the value when necessary.</p>
+<p>To understand this let us consider two methods to achieve one goal:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x&lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">5</span>, <span class="dt">sd =</span> <span class="dv">1</span>)
+
+
+<span class="co">#x$w&lt;-apply(x, 2, function(i) mean(i) / sd(x))</span>
+
+
+sd_x =<span class="st"> </span><span class="kw">sd</span>(x)
+<span class="co">#apply(x, 2, function(i) mean(i) / sd_x)</span></code></pre></div>
+</div>
+</div>
+<div id="efficient-workflows." class="section level2">
+<h2><span class="header-section-number">3.4</span> Efficient workflows.</h2>
+<p>Strategic thinking is critical during a project’s inception: if you make a bad decision early on, it will have cascading negative impacts throughout the project’s entire lifespan. So detrimental and ubiquitous is this phenomenon in software development that a term has been coined to describe it: <em>technical debt</em>. Good programmers working on a complex project will rarely just start typing code. Instead, they will plan the steps needed to complete the task as efficiently as possible: “smart preparation minimizes work”.</p>
+<p>To minimise technical debt at the outset, the best place to start may be with a pen and paper and an open mind. Sketching out your ideas and deciding precisely what you want to do, free from the constraints of a particular piece of technology, can be a rewarding exercise before you begin. Project planning and ‘visioning’ can be a creative process not always well-suited to the linear logic of computing, despite recent advances in project management software, some of which are outlined in the bullet points below.</p>
+<p>References</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="understanding-rs-performance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="stretching-the-limits.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

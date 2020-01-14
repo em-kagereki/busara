@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Understanding R’s Performance | BIG DATA ANALYSIS IN R TRAINING (BUSARA)</title>
+  <meta name="description" content="This the text material that will accompany the training" />
+  <meta name="generator" content="bookdown 0.16.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Understanding R’s Performance | BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This the text material that will accompany the training" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Understanding R’s Performance | BIG DATA ANALYSIS IN R TRAINING (BUSARA)" />
+  
+  <meta name="twitter:description" content="This the text material that will accompany the training" />
+  
+
+<meta name="author" content="EDWIN KAGEREKI" />
+
+
+<meta name="date" content="2020-01-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="taking-r-to-the-limit.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Big Data Training in R - Busara</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> INTRODUCTION</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Understanding R’s Performance</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#cpu-utilization-for-r-code"><i class="fa fa-check"></i><b>2.1</b> CPU Utilization for R code</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#ram"><i class="fa fa-check"></i><b>2.2</b> RAM</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#understanding-io"><i class="fa fa-check"></i><b>2.3</b> Understanding I/O</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#measuring-codes-performance"><i class="fa fa-check"></i><b>2.4</b> Measuring Code’s Performance</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html"><i class="fa fa-check"></i><b>3</b> Taking R to the limit</a><ul>
+<li class="chapter" data-level="3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#managing-io"><i class="fa fa-check"></i><b>3.1</b> Managing I/O</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#benchmark-of-methods-for-file-import-and-export"><i class="fa fa-check"></i><b>3.1.1</b> benchmark of methods for file import and export</a></li>
+<li class="chapter" data-level="3.1.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#versatile-data-import-with-rio"><i class="fa fa-check"></i><b>3.1.2</b> Versatile data import with rio</a></li>
+<li class="chapter" data-level="3.1.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#divide-and-rule-preprocessing-text-outside-r"><i class="fa fa-check"></i><b>3.1.3</b> Divide and rule: Preprocessing text outside R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-set-up-pcs."><i class="fa fa-check"></i><b>3.2</b> Efficiently set-up PCs.</a></li>
+<li class="chapter" data-level="3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#efficiently-write-r-codes."><i class="fa fa-check"></i><b>3.3</b> Efficiently write R codes.</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#tips"><i class="fa fa-check"></i><b>3.3.1</b> TIPS</a></li>
+<li class="chapter" data-level="3.3.2" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#avoid-duplication"><i class="fa fa-check"></i><b>3.3.2</b> Avoid duplication</a></li>
+<li class="chapter" data-level="3.3.3" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#code-organisation"><i class="fa fa-check"></i><b>3.3.3</b> Code organisation</a></li>
+<li class="chapter" data-level="3.3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#memory-allocation"><i class="fa fa-check"></i><b>3.3.4</b> Memory allocation</a></li>
+<li class="chapter" data-level="3.3.5" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#the-byte-compiler"><i class="fa fa-check"></i><b>3.3.5</b> The byte compiler</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#design-efficient-workflows."><i class="fa fa-check"></i><b>3.4</b> Design efficient workflows.</a></li>
+<li class="chapter" data-level="3.5" data-path="taking-r-to-the-limit.html"><a href="taking-r-to-the-limit.html#code-optimisation"><i class="fa fa-check"></i><b>3.5</b> code optimisation</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html"><i class="fa fa-check"></i><b>4</b> Stretching the limits</a><ul>
+<li class="chapter" data-level="4.1" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-computing-power-barrier"><i class="fa fa-check"></i><b>4.1</b> Breaking the computing power barrier</a></li>
+<li class="chapter" data-level="4.2" data-path="stretching-the-limits.html"><a href="stretching-the-limits.html#breaking-the-memory-barrier"><i class="fa fa-check"></i><b>4.2</b> Breaking the memory barrier</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html"><i class="fa fa-check"></i><b>5</b> Beyond the limits: distributed processing frameworks</a><ul>
+<li class="chapter" data-level="5.1" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-hadoop-architecture."><i class="fa fa-check"></i><b>5.1</b> Introduction to Hadoop architecture.</a></li>
+<li class="chapter" data-level="5.2" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#introduction-to-spark."><i class="fa fa-check"></i><b>5.2</b> Introduction to Spark.</a></li>
+<li class="chapter" data-level="5.3" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#spark-vs-hadoop"><i class="fa fa-check"></i><b>5.3</b> Spark vs Hadoop</a></li>
+<li class="chapter" data-level="5.4" data-path="beyond-the-limits-distributed-processing-frameworks.html"><a href="beyond-the-limits-distributed-processing-frameworks.html#running-r-in-spark."><i class="fa fa-check"></i><b>5.4</b> Running R in Spark.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html"><i class="fa fa-check"></i><b>6</b> Beyond the limits: Working with databases in R</a><ul>
+<li class="chapter" data-level="6.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#overview-of-the-types-of-databases."><i class="fa fa-check"></i><b>6.1</b> Overview of the types of databases.</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-interface"><i class="fa fa-check"></i><b>6.1.1</b> Database Interface</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#connecting-to-databases"><i class="fa fa-check"></i><b>6.2</b> Connecting to databases</a></li>
+<li class="chapter" data-level="6.3" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#read-write-and-modify-database"><i class="fa fa-check"></i><b>6.3</b> Read, write and modify database</a></li>
+<li class="chapter" data-level="6.4" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#database-queries-with-r"><i class="fa fa-check"></i><b>6.4</b> Database Queries With R</a></li>
+<li class="chapter" data-level="6.5" data-path="beyond-the-limits-working-with-databases-in-r.html"><a href="beyond-the-limits-working-with-databases-in-r.html#modeling-data-with-modeldb-tidypredict"><i class="fa fa-check"></i><b>6.5</b> modeling data with modeldb &amp; tidypredict</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html"><i class="fa fa-check"></i><b>7</b> Big data analysis: Data analysis, visualization and deployment</a><ul>
+<li class="chapter" data-level="7.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-sources."><i class="fa fa-check"></i><b>7.1</b> Data sources.</a></li>
+<li class="chapter" data-level="7.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-wrangling"><i class="fa fa-check"></i><b>7.2</b> Data wrangling</a></li>
+<li class="chapter" data-level="7.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#data-mining"><i class="fa fa-check"></i><b>7.3</b> Data mining</a></li>
+<li class="chapter" data-level="7.4" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#business-intelligence"><i class="fa fa-check"></i><b>7.4</b> Business intelligence</a></li>
+<li class="chapter" data-level="7.5" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#statistical-methods"><i class="fa fa-check"></i><b>7.5</b> Statistical methods</a></li>
+<li class="chapter" data-level="7.6" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#machine-learning"><i class="fa fa-check"></i><b>7.6</b> Machine learning</a></li>
+<li class="chapter" data-level="7.7" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#visualization."><i class="fa fa-check"></i><b>7.7</b> Visualization.</a></li>
+<li class="chapter" data-level="7.8" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment"><i class="fa fa-check"></i><b>7.8</b> Deployment</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deployment-of-desktop-apps"><i class="fa fa-check"></i><b>7.8.1</b> Deployment of desktop apps</a></li>
+<li class="chapter" data-level="7.8.2" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-interactive-web-apps---shiny-server-or-dockerplumber-or-rinno"><i class="fa fa-check"></i><b>7.8.2</b> Deploy Interactive web Apps - Shiny Server or docker/plumber or rinno</a></li>
+<li class="chapter" data-level="7.8.3" data-path="big-data-analysis-data-analysis-visualization-and-deployment.html"><a href="big-data-analysis-data-analysis-visualization-and-deployment.html#deploy-models-for-mobile-and-embeded-devices"><i class="fa fa-check"></i><b>7.8.3</b> Deploy models for mobile and embeded devices</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Planning and implementing Big Data analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#need-assessment."><i class="fa fa-check"></i><b>8.1</b> Need assessment.</a></li>
+<li class="chapter" data-level="8.2" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#designing-a-workflow."><i class="fa fa-check"></i><b>8.2</b> Designing a workflow.</a></li>
+<li class="chapter" data-level="8.3" data-path="planning-and-implementing-big-data-analysis.html"><a href="planning-and-implementing-big-data-analysis.html#case-scenarios."><i class="fa fa-check"></i><b>8.3</b> Case scenarios.</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIG DATA ANALYSIS IN R TRAINING (BUSARA)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Understanding R’s Performance</h1>
+<div class="alert alert alert-info">
+<p>
+Chapter objectives:
+</p>
+<ul>
+<li>
+<p>
+Identify when RAM is a limitation in an analysis task.
+</p>
+</li>
+<li>
+<p>
+Identify when the processor(s) speed is a limitation in an analysis task.
+</p>
+</li>
+<li>
+<p>
+Identify when I/O is a bottleneck in an R task.
+</p>
+</li>
+<li>
+<p>
+Find the bottlenecks of your code.
+</p>
+</li>
+</ul>
+</div>
+<p>R is a great tool used for statistical analysis and data processing. R programmers who need to process and analyze the ever growing volume of data sometimes find that R’s performance suffers under such heavy loads. Why does R sometimes not perform well, and how can we overcome its performance limitations? We will examine the factors behind R’s performance and offers a variety of techniques to improve the performance of R programs, for example, optimizing memory usage, performing computations in parallel, or even tapping the computing power of external data processing systems.</p>
+<p>Before we can find the solutions to R’s performance problems, we need to understand what makes R perform poorly in certain situations. This chapter kicks off our exploration of the high-performance R programming by taking a peek under the hood to understand how R is designed, and how its design can limit the performance of R programs.</p>
+<p>We will examine three main constraints faced by any computational task in R:</p>
+<ul>
+<li>CPU</li>
+<li>RAM</li>
+<li>Disk input/output (I/O)</li>
+</ul>
+<p>By the end of this chapter, you will have some insights into the bottlenecks that your R programs could run into.</p>
+<p><strong>R Workflow</strong></p>
+<p>First, let’s see how R programs are executed in a computer. This is a very simplified version of what actually happens, but it suffices for us to understand the performance limitations of R. The following figure illustrates the steps required to execute an R program.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data3.csv&quot;</span>)
+totals &lt;-<span class="st"> </span><span class="kw">colSums</span>(data)
+<span class="kw">write.csv</span>(totals, <span class="st">&quot;totals.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;workflow.jpg&quot;</span>)</code></pre></div>
+<p><img src="workflow.jpg" /><!-- --></p>
+<p>We use the numbering to understand the preceding diagram:</p>
+<div class="alert alert alert-secondary">
+<p>
+Summary of steps:
+</p>
+<p>
+1 - When we load and run an R program, the R code is first loaded into RAM.
+</p>
+<p>
+2 - The R interpreter then translates the R code into machine code and loads the machine code into the CPU.
+</p>
+<p>
+3 - The CPU executes the program.
+</p>
+<p>
+4 - The program loads the data to be processed from the hard disk into RAM (<code>read.csv()</code> in the example).
+</p>
+<p>
+5 - The data is loaded in small chunks into the CPU for processing.
+</p>
+<p>
+6 - The CPU processes the data one chunk at a time, and exchanges chunks of data with RAM until all the data has been processed (in the example, the CPU executes the instructions of the <code>colSums()</code> function to compute the column sums on the data set).
+</p>
+<p>
+7 - Sometimes, the processed data is stored back onto the hard drive (<code>write.csv()</code> in the example).
+</p>
+</div>
+<p>This simple example highlights the possible rate limiting steps that we may slow down our code:</p>
+<ul>
+<li><p>The <strong>speed and performance of the CPU</strong> determines how quickly computing instructions, such as colSums() in the example, are executed. This includes the interpretation of the R code into the machine code and the actual execution of the machine code to process the data.</p></li>
+<li><p>The <strong>size of RAM</strong> available on the computer limits the amount of data that can be processed at any given time. In this example, if the mydata.csv file contains more data than can be held in the RAM, the call to read.csv() will fail.</p></li>
+<li><p>The speed at which the data can be read from or written to the hard disk (read.csv() and write.csv() in the example), that is, the <strong>speed of the disk input/output (I/O)</strong> affects how quickly the data can be loaded into the memory and stored back onto the hard disk.</p></li>
+</ul>
+<p>Sometimes, you might encounter these limiting factors one at a time. For example, when a dataset is small enough to be quickly read from the disk and fully stored in the RAM, but the computations performed on it are complex, then only the CPU constraint is encountered. At other times, you might find them occurring together in various combinations. For example, when a dataset is very large, it takes a long time to load it from the disk, only one small chunk of it can be loaded at any given time into the memory, and it takes a long time to perform any computations on it. In either case, these are the symptoms of performance problems. In order to diagnose the problems and find solutions for them, we need to look at what is happening behind the scenes that might be causing these constraints to occur.</p>
+<div id="cpu-utilization-for-r-code" class="section level2">
+<h2><span class="header-section-number">2.1</span> CPU Utilization for R code</h2>
+<p><strong>R as an interpreted language</strong></p>
+<p>R is an interpreted language. This means that every time you execute an R program, the R interpreter interprets and executes the R code on the fly. The following figure illustrates what happens when you run any R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;interpreted.jpg&quot;</span>)</code></pre></div>
+<p><img src="interpreted.jpg" /><!-- --></p>
+<p>R first parses your source code into an internal R object representation of all the statements and expressions in your codeand then it evaluates this internal object to execute the code.</p>
+<p>This is what makes R such a dynamic and interactive programming language. You can type R statements into the R console and get results immediately because the R interpreter parses and evaluates the code right away. The downside of this approach is that R code runs relatively slow because it is reinterpreted every time you run it, even when it has not changed.</p>
+<p>Contrast this with a compiled language such as C or Fortran. When you work with a compiled language, you compile your source code into the machine code before you execute it. This makes compiled languages less interactive because the compilation step can take several minutes for large programs, even when you have made just a tiny change to the code. On the other hand, once the code has been compiled, it runs very quickly on the CPU since it is already in the computer’s native language.</p>
+<p>Due to R being an interpreted language, every time you run an R program, the CPU is busy doing two things: interpreting your code and executing the instructions contained in it. Therefore, the CPU’s speed can limit the performance of R programs. We will learn how to overcome CPU limitations in chapters 3.</p>
+<p><strong>Single threading</strong></p>
+<p>Another way in which R is CPU limited is that, by default, it runs only on a single thread on the CPU. It does not matter if you install R on a powerful server with 64 CPU cores, R will only use one of them. For example, finding the sum of a numeric vector is an operation that can be made to run in parallel in the CPU quite easily. If there are four CPU cores available, each core can be given roughly one quarter of the data to process. Each core computes the subtotal of the chunk of data it is given, and the four subtotals are then added up to find the total sum of the whole dataset. However in R, the sum() function runs serially, processing the entire dataset on one CPU core. In fact, many Big Data operations are of a similar nature to the summation example here, with the same task running independently on many subsets of data. In such a scenario, performing the operation sequentially would be an underuse of today’s mostly parallel computing architectures. In Chapter 8, Multiplying Performance with Parallel Computing, we will learn how to write parallel programs in R to overcome this limitation.</p>
+</div>
+<div id="ram" class="section level2">
+<h2><span class="header-section-number">2.2</span> RAM</h2>
+<p>All data that is processed in R has to be fully loaded into the RAM. This means that once the data has been loaded, all of it is available for processing by the CPU, which is great for performance. On the other hand, it also means that the maximum size of data that you can process depends on the amount of free RAM available on your system. Remember that not all the RAM on your computer is available to R. The operating system, background processes, and any other applications that are running in the CPU also compete for the RAM. What is available for R to use might be a fraction of the total RAM installed on the system.</p>
+<p>On top of that, R also requires free RAM to store the results of its computations. Depending on what kinds of computations you are performing, you might need the available RAM to be twice or even more times as large as the size of your data.</p>
+<p>32-bit versions of R are also limited by the amount of RAM they can access. Depending on the operating system, they might be limited to 2 GB to 4 GB of RAM even when there is actually more RAM available. Furthermore, due to memory address limits, data structures in 32-bit versions of R can contain at most 231-1 = 2,147,483,647 elements. Because of these limits, you should use the 64-bit versions of R whenever you can.</p>
+<div class="alert alert-success">
+<p>
+Tips and summary:
+</p>
+<p>
+When we try to load a dataset that is larger than the available the data loads successfully, but once the available RAM is used up, the operating system starts to swap the data in RAM into a swapfile on the hard disk. This is not a feature of R; it depends on the operating system. When this happens, R thinks that all the data has been loaded into the RAM when in fact the operating system is hard at work in the background swapping data between RAM and the swapfile on the disk. When such a situation occurs, we have a disk I/O bottleneck on top of the memory bottleneck. Because disk I/O is so slow (hard drive’s speed is typically measured in milliseconds, while RAM’s speed in nanoseconds), it can cause R to appear as if it is frozen or becomes unresponsive. Of the three performance limitations we looked at, disk I/O often has the largest impact on R’s performance.
+</p>
+</div>
+<p>A solid understanding of R’s memory management will help you predict how much memory you’ll need for a given task and help you to make the most of the memory you have. It is good to understand the basics of memory management in R, moving from individual objects to functions to larger blocks of code. Along the way, you’ll learn about some common myths, such as that you need to call gc() to free up memory, or that for loops are always slow.</p>
+<p><strong>Object size</strong> It is important to understand how much memory an object occupies, and uses that as a launching point to improve your understanding of how R objects are stored in memory. These functions tell you how many bytes of memory an object occupies:</p>
+<p>There are two ways to do this:</p>
+<ul>
+<li>The built-in object.size() function.</li>
+<li>The pryr::object_size() function. This function is better than the built-in object.size() because it accounts for shared elements within an object and includes the size of environments</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pryr)
+<span class="kw">object_size</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
+<pre><code>## 96 B</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">object_size</span>(mean)</code></pre></div>
+<pre><code>## 1.18 kB</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">object_size</span>(mtcars)</code></pre></div>
+<pre><code>## 7.21 kB</code></pre>
+<p><strong>Memory usage and garbage collection</strong></p>
+<p>shows you how to use to see</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Memory usage and garbage collection introduces you to the mem_used() and mem_change() functions that will help you understand how R allocates and frees memory.</p></li>
+<li><p>Memory profiling with lineprof shows you how to use the lineprof package to understand how memory is allocated and released in larger code blocks.</p></li>
+<li><p>Modification in place introduces you to the address() and refs() functions so that you can understand when R modifies in place and when R modifies a copy. Understanding when objects are copied is very important for writing efficient R code.</p></li>
+</ol>
+<p>A microbenchmark is a measurement of the performance of a very small piece of code, something that might take microseconds (µs) or nanoseconds (ns) to run. I’m going to use microbenchmarks to demonstrate the performance of very low-level pieces of R code, which help develop your intuition for how R works.</p>
+<p>Memory size</p>
+<p>Object size</p>
+</div>
+<div id="understanding-io" class="section level2">
+<h2><span class="header-section-number">2.3</span> Understanding I/O</h2>
+</div>
+<div id="measuring-codes-performance" class="section level2">
+<h2><span class="header-section-number">2.4</span> Measuring Code’s Performance</h2>
+<p>Before you can make your code faster, you first need to figure out what’s making it slow. This sounds easy, but it’s not. Even experienced programmers have a hard time identifying bottlenecks in their code. So instead of relying on your intuition, you should profile your code: measure the run-time of each line of code using realistic inputs.</p>
+<p>Here we discuss two concepts that are related but serve different purposes in an R code.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><em>Benchmarking</em>. We take two competing pieces of code - could be as simpler as a one liner or as complex as an entire web framework. Then, we put them up against each other (iterations per second). At the end of the task, we come up with a single metric, a score. We use the score to compare the two competing options.</p></li>
+<li><p><em>Profiling.</em> Profiling your program is a way to determining which methods are called and how long each method take to complete. This way you can detech which methods are possible bottlenecks. Profiling also tell us a lot of valuable things, like what percentage of CPU time was use where, where memory was allocated and things like that.We should not use profiling to determine performance. Profiling is intented to be used in order to identify the parts of your program which take the most time.</p></li>
+</ol>
+<p><strong>Benchmarking</strong></p>
+<p>Although there <a href="https://www.alexejgossmann.com/benchmarking_r/">many</a> approaches we can use for benchmarking, we will discuss two examples.</p>
+<p>The easiest way to benchmark a function is to use system.time().</p>
+<p>They system.time() function takes an arbitrary R expression as input (can be wrapped in curly braces) and returns the amount of time taken to evaluate the expression. The system.time() function computes the time (in seconds) needed to execute an expression and if there’s an error, gives the time until the error occurred. The function returns an object of class proc_time which contains two useful bits of information:</p>
+<p>user time: time charged to the CPU(s) for this expression elapsed time: “wall clock” time, the amount of time that passes for you as you’re sitting there Usually, the user time and elapsed time are relatively close, for straight computing tasks. But there are a few situations where the two can diverge, sometimes dramatically. The elapsed time may be greater than the user time if the CPU spends a lot of time waiting around. This commonly happens if your R expression involes some input or output, which depends on the activity of the file system and the disk (or the Internet, if using a network connection).</p>
+<p>The elapsed time may be smaller than the user time if your machine has multiple cores/processors (and is capable of using them). For example, multi-threaded BLAS libraries (vecLib/Accelerate, ATLAS, ACML, MKL) can greatly speed up linear algebra calculations and are commonly installed on even desktop systems these days. Also, parallel processing done via something like the parallell package can make the elapsed time smaller than the user time. When you have multiple processors/cores/machines working in parallel, the amount of time that the collection of CPUs spends working on a problem is the same as with a single CPU, but because they are operating in parallel, there is a savings in elapsed time.</p>
+<p>Here’s an example of where the elapsed time is greater than the user time.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(mean1 &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">mean</span>(x))</code></pre></div>
+<pre><code>##    user  system elapsed 
+##       0       0       0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(mean2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x))</code></pre></div>
+<pre><code>##    user  system elapsed 
+##       0       0       0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#totals &lt;- colSums(data)</span>
+<span class="co">#write.csv(totals, &quot;totals.csv&quot;)</span>
+
+<span class="co">#library(rio)</span>
+<span class="co">#convert(&quot;data3.csv&quot;, &quot;data3.Rds&quot;)</span></code></pre></div>
+<p>An alternative way of benchmarking, is via the flexible microbenchmark package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;microbenchmark&quot;</span>)
+
+microbench&lt;-<span class="kw">microbenchmark</span>({<span class="st">&quot;mean1&quot;</span> =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">mean</span>(x)},
+                           {<span class="st">&quot;mean2&quot;</span> =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">sum</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)})  
+
+
+microbench</code></pre></div>
+<pre><code>## Unit: nanoseconds
+##                                            expr min  lq  mean median    uq
+##           {     &quot;mean1&quot; = function(x) mean(x) } 219 225 632.2    229 270.5
+##  {     &quot;mean2&quot; = function(x) sum(x)/length(x) } 214 219 259.5    222 272.0
+##    max neval
+##  14110   100
+##   1267   100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">autoplot</span>(microbench) </code></pre></div>
+<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>The results summarise how long each query took: the minimum (min), lower and upper quariles (lq and uq respectively) and the mean, median and maximum, for each of the number of evaluations (neval, with the default value of 100 used in this case). cld reports the relative rank of each row in the form of ‘compact letter display’: in this case df$name[3] performs best, with a rank of a and a mean time around 25% lower than the other two functions.</p>
+<p><strong>Profiling</strong></p>
+<p>Benchmarking generally tests the execution time of one function against another. Profiling, on the other hand, is about testing large chunks of code.</p>
+<ol style="list-style-type: decimal">
+<li>The R Profiler</li>
+</ol>
+<p>This is where the profiler comes in handy. The Rprof() function starts the profiler in R. Note that R must be compiled with profiler support (but this is usually the case). In conjunction with Rprof(), we will use the summaryRprof() function which summarizes the output from Rprof() (otherwise it’s not really readable). Note that you should NOT use system.time() and Rprof() together, or you will be sad.</p>
+<p>Rprof() keeps track of the function call stack at regularly sampled intervals and tabulates how much time is spent inside each function. By default, the profiler samples the function call stack every 0.02 seconds. This means that if your code runs very quickly (say, under 0.02 seconds), the profiler is not useful. But of your code runs that fast, you probably don’t need the profiler.</p>
+<p>The profiler is started by calling the Rprof() function.</p>
+<p>The summaryRprof() function tabulates the R profiler output and calculates how much time is spent in which function. There are two methods for normalizing the data.</p>
+<ul>
+<li><p>“by.total” divides the time spend in each function by the total run time.</p></li>
+<li><p>“by.self” does the same as “by.total” but first subtracts out time spent in functions above the current function in the call stack. I personally find this output to be much more useful.</p></li>
+</ul>
+<p><strong>General architecture of the code profiler</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Rprof</span>(<span class="st">&quot;path_to_hold_output&quot;</span>)
+## some code to be profiled
+<span class="kw">Rprof</span>(<span class="ot">NULL</span>)
+## some code NOT to be profiled
+<span class="kw">Rprof</span>(<span class="st">&quot;path_to_hold_output&quot;</span>, <span class="dt">append=</span><span class="ot">TRUE</span>)
+## some code to be profiled
+<span class="kw">Rprof</span>(<span class="ot">NULL</span>)
+ 
+<span class="co"># summarize the results</span>
+<span class="kw">summaryRprof</span>(<span class="st">&quot;path_to_hold_output&quot;</span>)</code></pre></div>
+<pre><code>## $by.self
+##                       self.time self.pct total.time total.pct
+## sample.interval=20000      0.02      100       0.02       100
+## 
+## $by.total
+##                       total.time total.pct self.time self.pct
+## sample.interval=20000       0.02       100      0.02      100
+## 
+## $sample.interval
+## [1] 0.02
+## 
+## $sampling.time
+## [1] 0.02</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fileName &lt;-<span class="st"> &quot;Rprof_example.txt&quot;</span> <span class="co">#filename – A file name where to store results.</span>
+
+<span class="kw">Rprof</span>(fileName,<span class="dt">append=</span><span class="ot">TRUE</span>)
+
+<span class="co">#Rprof()</span>
+
+
+data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data3.csv&quot;</span>)
+totals &lt;-<span class="st"> </span><span class="kw">colSums</span>(data)
+<span class="kw">write.csv</span>(totals, <span class="st">&quot;totals.csv&quot;</span>)
+<span class="kw">Rprof</span>(<span class="ot">NULL</span>)
+
+<span class="kw">summaryRprof</span>(fileName)</code></pre></div>
+<pre><code>## $by.self
+##                       self.time self.pct total.time total.pct
+## sample.interval=20000      0.22    73.33       0.22     73.33
+## &quot;grep&quot;                     0.02     6.67       0.02      6.67
+## &quot;gsub&quot;                     0.02     6.67       0.02      6.67
+## &quot;strsplit&quot;                 0.02     6.67       0.02      6.67
+## &quot;substr&quot;                   0.02     6.67       0.02      6.67
+## 
+## $by.total
+##                       total.time total.pct self.time self.pct
+## sample.interval=20000       0.22     73.33      0.22    73.33
+## &quot;&lt;Anonymous&gt;&quot;               0.08     26.67      0.00     0.00
+## &quot;knitr::knit_params&quot;        0.04     13.33      0.00     0.00
+## &quot;split_lines&quot;               0.04     13.33      0.00     0.00
+## &quot;grep&quot;                      0.02      6.67      0.02     6.67
+## &quot;gsub&quot;                      0.02      6.67      0.02     6.67
+## &quot;strsplit&quot;                  0.02      6.67      0.02     6.67
+## &quot;substr&quot;                    0.02      6.67      0.02     6.67
+## &quot;capture.output&quot;            0.02      6.67      0.00     0.00
+## &quot;do.call&quot;                   0.02      6.67      0.00     0.00
+## &quot;doTryCatch&quot;                0.02      6.67      0.00     0.00
+## &quot;eval&quot;                      0.02      6.67      0.00     0.00
+## &quot;evalVis&quot;                   0.02      6.67      0.00     0.00
+## &quot;NextMethod&quot;                0.02      6.67      0.00     0.00
+## &quot;.rs.valueContents&quot;         0.02      6.67      0.00     0.00
+## &quot;.rs.valueFromStr&quot;          0.02      6.67      0.00     0.00
+## &quot;.rs.withTimeLimit&quot;         0.02      6.67      0.00     0.00
+## &quot;str&quot;                       0.02      6.67      0.00     0.00
+## &quot;str.data.frame&quot;            0.02      6.67      0.00     0.00
+## &quot;str.default&quot;               0.02      6.67      0.00     0.00
+## &quot;strSub&quot;                    0.02      6.67      0.00     0.00
+## &quot;try&quot;                       0.02      6.67      0.00     0.00
+## &quot;tryCatch&quot;                  0.02      6.67      0.00     0.00
+## &quot;tryCatchList&quot;              0.02      6.67      0.00     0.00
+## &quot;tryCatchOne&quot;               0.02      6.67      0.00     0.00
+## &quot;unlist&quot;                    0.02      6.67      0.00     0.00
+## &quot;withVisible&quot;               0.02      6.67      0.00     0.00
+## 
+## $sample.interval
+## [1] 0.02
+## 
+## $sampling.time
+## [1] 0.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summaryRprof</span>(fileName)<span class="op">$</span>by.total</code></pre></div>
+<pre><code>##                       total.time total.pct self.time self.pct
+## sample.interval=20000       0.22     73.33      0.22    73.33
+## &quot;&lt;Anonymous&gt;&quot;               0.08     26.67      0.00     0.00
+## &quot;knitr::knit_params&quot;        0.04     13.33      0.00     0.00
+## &quot;split_lines&quot;               0.04     13.33      0.00     0.00
+## &quot;grep&quot;                      0.02      6.67      0.02     6.67
+## &quot;gsub&quot;                      0.02      6.67      0.02     6.67
+## &quot;strsplit&quot;                  0.02      6.67      0.02     6.67
+## &quot;substr&quot;                    0.02      6.67      0.02     6.67
+## &quot;capture.output&quot;            0.02      6.67      0.00     0.00
+## &quot;do.call&quot;                   0.02      6.67      0.00     0.00
+## &quot;doTryCatch&quot;                0.02      6.67      0.00     0.00
+## &quot;eval&quot;                      0.02      6.67      0.00     0.00
+## &quot;evalVis&quot;                   0.02      6.67      0.00     0.00
+## &quot;NextMethod&quot;                0.02      6.67      0.00     0.00
+## &quot;.rs.valueContents&quot;         0.02      6.67      0.00     0.00
+## &quot;.rs.valueFromStr&quot;          0.02      6.67      0.00     0.00
+## &quot;.rs.withTimeLimit&quot;         0.02      6.67      0.00     0.00
+## &quot;str&quot;                       0.02      6.67      0.00     0.00
+## &quot;str.data.frame&quot;            0.02      6.67      0.00     0.00
+## &quot;str.default&quot;               0.02      6.67      0.00     0.00
+## &quot;strSub&quot;                    0.02      6.67      0.00     0.00
+## &quot;try&quot;                       0.02      6.67      0.00     0.00
+## &quot;tryCatch&quot;                  0.02      6.67      0.00     0.00
+## &quot;tryCatchList&quot;              0.02      6.67      0.00     0.00
+## &quot;tryCatchOne&quot;               0.02      6.67      0.00     0.00
+## &quot;unlist&quot;                    0.02      6.67      0.00     0.00
+## &quot;withVisible&quot;               0.02      6.67      0.00     0.00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summaryRprof</span>(fileName)<span class="op">$</span>by.self</code></pre></div>
+<pre><code>##                       self.time self.pct total.time total.pct
+## sample.interval=20000      0.22    73.33       0.22     73.33
+## &quot;grep&quot;                     0.02     6.67       0.02      6.67
+## &quot;gsub&quot;                     0.02     6.67       0.02      6.67
+## &quot;strsplit&quot;                 0.02     6.67       0.02      6.67
+## &quot;substr&quot;                   0.02     6.67       0.02      6.67</code></pre>
+<p>Although the <code>Rprof()</code> function is found in the base. There are many other packages that maybe used for code profiling. It is advisable that you familiarize themselves with these packages.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="taking-r-to-the-limit.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
